@@ -8,6 +8,7 @@
 <!-- fonts vendored locally -->
 
 <link href="../../vendor/fonts/fonts.css" rel="stylesheet">
+<link href="../../vendor/fonts-editorial/fonts-editorial.css" rel="stylesheet">
 
 <link href="../../vendor/mini-tw.css" rel="stylesheet">
 <script src="../../vendor/react.production.min.js"></script>
@@ -17,81 +18,30 @@
 
 <style>
   :root{
-    --cream-100:#F5E6D8;
-    --cream-200:#E8D5C4;
-    --cream-300:#D4B8A0;
-    --blush:#E8C4B4;
-    --sage:#B5C4A8;
-    --gold:#B8965A;
-    --gold-hi:#D4B886;
-    --charcoal:#1F1B16;
-    --charcoal-soft:rgba(31,27,22,0.78);
-    --charcoal-muted:rgba(31,27,22,0.55);
     --glass-fill:rgba(255, 251, 246, 0.42);
     --glass-stroke:rgba(255, 255, 255, 0.55);
     --glass-shadow: 0 24px 60px -20px rgba(60, 40, 20, 0.22), 0 6px 16px -8px rgba(60, 40, 20, 0.16);
 
-    /* Slide 5 — Romantic Rose dusty-rose additions */
-    --rose:#C25E7A;
-    --rose-deep:#A84862;
-    --rose-soft:rgba(194,94,122,0.86);
-    --rose-muted:rgba(194,94,122,0.55);
-    --rose-blush:#E8B4C4;
-    --rose-cream:#F4DDE4;
+
+    --fw-cream:#F7ECD8;
+    --fw-cream-deep:#F3E3C9;
+    --fw-burgundy:#7A2130;
+    --fw-burgundy-light:#8C2A3A;
+    --fw-gold:#C9A24A;
+    --fw-gold-deep:#B8862E;
+    --fw-charcoal:#2B221A;
+    --fw-charcoal-muted:rgba(43,34,26,0.62);
   }
   html, body{
     width:1080px; height:1920px; margin:0; padding:0;
-    background:#E8D5C4;
+    background:var(--fw-cream);
     overflow:hidden;
-    font-family: 'Inter', system-ui, sans-serif;
-    color: var(--charcoal);
+    font-family:'Cormorant Garamond',serif;
+    color: var(--fw-charcoal);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   #root{ width:1080px; height:1920px; position:relative; }
-  .display{ font-family:'Inter Tight', 'Inter', sans-serif; letter-spacing:-0.035em; }
-  .tabular{ font-variant-numeric: tabular-nums; }
-  .eyebrow{ font-family:'Inter', sans-serif; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; }
-
-  .stage{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 900px 700px at 18% 18%, rgba(232, 196, 180, 0.85), transparent 60%),
-      radial-gradient(ellipse 800px 600px at 88% 35%, rgba(245, 230, 216, 0.75), transparent 65%),
-      radial-gradient(ellipse 700px 700px at 30% 90%, rgba(181, 196, 168, 0.45), transparent 65%),
-      radial-gradient(ellipse 1100px 900px at 110% 110%, rgba(212, 184, 160, 0.7), transparent 70%),
-      linear-gradient(168deg, #F5E6D8 0%, #EBD3C0 45%, #E0BFA8 100%);
-  }
-
-  /* atmospheric drifting orbs */
-  .orb{
-    position:absolute; border-radius:50%;
-    filter: blur(60px);
-    mix-blend-mode: multiply;
-    opacity: 0.55;
-    pointer-events:none;
-  }
-  .orb-1{ width:520px; height:520px; left:-80px; top:120px; background: radial-gradient(circle, #E8C4B4 0%, transparent 65%); }
-  .orb-2{ width:600px; height:600px; right:-120px; top:480px; background: radial-gradient(circle, #F5E6D8 0%, transparent 65%); }
-  .orb-3{ width:480px; height:480px; left:60px; bottom:-40px; background: radial-gradient(circle, #B5C4A8 0%, transparent 60%); opacity:0.32; }
-  .orb-4{ width:420px; height:420px; right:80px; bottom:240px; background: radial-gradient(circle, #D4B8A0 0%, transparent 65%); }
-  /* New: romantic rose blush motif orbs */
-  .orb-rose{ width:440px; height:440px; left:-70px; top:760px; background: radial-gradient(circle, #C25E7A 0%, transparent 60%); opacity:0.20; }
-  .orb-blush{ width:380px; height:380px; right:-40px; top:900px; background: radial-gradient(circle, #E8B4C4 0%, transparent 62%); opacity:0.30; }
-
-  /* rose-petal corner decoration */
-  .petal-deco{
-    position:absolute; pointer-events:none;
-    opacity:0.16;
-    mix-blend-mode:multiply;
-  }
-
-  /* grain overlay */
-  .grain{
-    position:absolute; inset:0; pointer-events:none; opacity:0.07; mix-blend-mode:overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
   .glass{
     position:relative;
     background: var(--glass-fill);
@@ -115,67 +65,95 @@
     border-radius:inherit;
   }
 
-  /* Romantic dusty-rose intro-price pill */
-  .price-pill-rose{
-    background:
-      radial-gradient(ellipse 80% 60% at 30% 22%, rgba(255,210,225,0.22), transparent 55%),
-      linear-gradient(158deg, #D67791 0%, #C25E7A 55%, #A84862 100%);
-    border: 1.5px solid rgba(212, 184, 134, 0.55);
-    box-shadow:
-      0 30px 66px -16px rgba(140, 50, 75, 0.52),
-      0 12px 26px -8px rgba(140, 50, 75, 0.32),
-      inset 0 1px 0 rgba(255,220,232,0.40),
-      inset 0 -1px 0 rgba(90,28,45,0.28);
-  }
-  .price-pill-rose::before{
-    content:""; position:absolute; inset:6px;
-    border-radius:50%;
-    border: 1px solid rgba(255, 215, 228, 0.32);
-    pointer-events:none;
-  }
 
-  .hero-img{
-    width:100%; height:100%; object-fit:cover; object-position: center 60%;
-  }
-  .hero-vignette{
-    position:absolute; inset:0; pointer-events:none;
-    background:
-      linear-gradient(180deg, rgba(45,20,30,0.00) 50%, rgba(45,20,30,0.66) 100%),
-      linear-gradient(90deg, rgba(45,20,30,0.16) 0%, rgba(45,20,30,0) 35%);
-  }
-  .hero-fallback{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 65% 55% at 50% 62%, rgba(244, 221, 228, 0.95), transparent 72%),
-      radial-gradient(circle at 50% 60%, rgba(232,180,196,0.55), transparent 55%),
-      linear-gradient(170deg, #F4DDE4 0%, #E8C4B4 50%, #D8A0B0 100%);
-  }
-  .hero-eyebrow-pill{
-    background: rgba(248, 232, 238, 0.90);
-    border: 1px solid rgba(194, 94, 122, 0.42);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-
-  .pin-dot-rose{
-    width:8px; height:8px; border-radius:50%; background:var(--rose);
-    box-shadow: 0 0 0 4px rgba(194,94,122,0.18);
-  }
-
-  /* hairline rules for eyebrow header (grow from center) */
-  .hair-rule{
-    height:1px; background: linear-gradient(90deg, transparent, rgba(184,150,90,0.55), transparent);
-    flex:1; max-width:230px;
-  }
-
-  .rose-bullet{
-    width:22px; height:22px; flex-shrink:0;
-    display:inline-flex; align-items:center; justify-content:center;
-  }
-
+  *{ box-sizing:border-box; }
+  body{ cursor:none; color:var(--fw-charcoal); font-family:'Cormorant Garamond',serif; }
+  h1,h2,h3,p{ margin:0; }
+  .stage{ position:absolute; inset:0; background:radial-gradient(ellipse at 0% 38%,rgba(122,33,48,.14),transparent 52%),radial-gradient(ellipse at 95% 82%,rgba(201,162,74,.24),transparent 55%),linear-gradient(165deg,var(--fw-cream),var(--fw-cream-deep)); }
+  .orb{ position:absolute; border-radius:50%; filter:blur(60px); mix-blend-mode:multiply; opacity:.22; pointer-events:none; }
+  .orb-1{ width:520px;height:520px;left:-180px;top:220px;background:radial-gradient(circle,var(--fw-burgundy),transparent 65%); }
+  .orb-2{ width:600px;height:600px;right:-200px;top:640px;background:radial-gradient(circle,var(--fw-gold),transparent 65%); }
+  .orb-3{ width:480px;height:480px;left:60px;bottom:-100px;background:radial-gradient(circle,var(--fw-burgundy-light),transparent 65%);opacity:.12; }
+  .content-frame{ position:relative;width:100%;height:100%;padding:36px 44px;display:grid;grid-template-rows:150px 300px 420px 280px 330px 288px;gap:16px; }
+  .glass::after{ z-index:0;opacity:.4; }
+  .glass > :not(.gold-frame){ position:relative;z-index:1; }
+  .caps{ font-family:'Cormorant SC',serif;text-transform:uppercase;letter-spacing:.12em;font-weight:600; }
+  .script{ font-family:'Great Vibes',cursive;color:var(--fw-gold-deep);font-weight:400; }
+  .header-row{ padding:20px 28px 12px;display:grid;grid-template-columns:1fr 1fr;align-items:center; }
+  .wordmark{ font-size:35px;letter-spacing:.12em;white-space:nowrap; }
+  .wordmark span{ color:var(--fw-gold-deep); }
+  .brand-subline{ font-size:15px;margin-top:5px;letter-spacing:.2em; }
+  .collection-lockup{ text-align:right; }
+  .collection-badge{ display:inline-block;border:1px solid var(--fw-gold);border-radius:40px;padding:8px 23px;text-align:center;font-size:16px;line-height:1.35;color:var(--fw-burgundy); }
+  .collection-badge span{ display:block;font-size:13px; }
+  .collection-lockup .script{ font-size:29px;margin-top:6px; }
+  .divider-rule{ display:flex;align-items:center;gap:12px;color:var(--fw-gold-deep); }
+  .divider-rule:before,.divider-rule:after{ content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--fw-gold)); }
+  .divider-rule:after{ transform:rotate(180deg); }
+  .header-row .divider-rule{ grid-column:1/-1; }
+  .divider-rule svg{ width:20px;height:20px;flex-shrink:0; }
+  .headline-panel{ padding:16px 30px;text-align:center;display:flex;flex-direction:column;justify-content:center; }
+  h1{ font-size:62px;line-height:.98;font-weight:400; }
+  h1 em{ color:var(--fw-burgundy);font-weight:400; }
+  .headline-panel .caps{ font-size:18px;margin-top:18px; }
+  .intro{ font-size:26px;line-height:1.16;max-width:840px;margin:12px auto 0; }
+  .intro span{ color:var(--fw-burgundy);font-weight:600; }
+  .choice-panel{ padding:22px 28px; }
+  .choice-top{ height:204px;display:flex;align-items:center;justify-content:center; }
+  .choice-top .divider-rule{ width:100%;gap:28px; }
+  .price-seal{ width:200px;height:200px;flex-shrink:0;border:1.5px solid var(--fw-gold);border-radius:50%;background:var(--fw-cream);color:var(--fw-burgundy);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 5px rgba(247,236,216,.6),0 8px 22px rgba(122,33,48,.08); }
+  .price-seal .caps{ font-size:13px; }
+  .price-total{ font-size:68px;font-weight:700;line-height:.94;margin:3px 0; }
+  .price-inclusions{ font-size:14px;line-height:1.12;width:174px;margin-top:7px; }
+  .info-strip{ display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:22px 12px; }
+  .info-item{ text-align:center;padding:0 12px; }
+  .info-item + .info-item{ border-left:1px solid rgba(201,162,74,.6); }
+  .info-item svg{ width:52px;height:52px;margin:0 auto 18px;display:block; }
+  .info-item h3{ font-size:21px;color:var(--fw-burgundy);margin-bottom:12px; }
+  .info-item p{ font-family:'Jost',sans-serif;font-size:18px;font-style:italic;line-height:1.35; }
+  .ritual-panel{ padding:24px 20px; }
+  .section-title{ font-size:20px;white-space:nowrap; }
+  .steps{ display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px; }
+  .step{ text-align:center;position:relative; }
+  .step:not(:last-child):after{ content:'›';position:absolute;right:-13px;top:20px;color:var(--fw-gold-deep);font-size:34px; }
+  .icon-frame{ position:relative;width:76px;height:76px;border:1px solid var(--fw-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:rgba(247,236,216,.6); }
+  .icon-frame > svg{ width:44px;height:44px; }
+  .step-num{ position:absolute;top:-7px;left:-6px;width:29px;height:29px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--fw-burgundy);border:1px solid var(--fw-gold);color:var(--fw-cream);font:500 16px 'Jost',sans-serif; }
+  .step h3{ font-size:22px;line-height:1.02;min-height:46px;font-weight:600;margin-bottom:9px; }
+  .step p{ font-family:'Jost',sans-serif;font-size:16px;line-height:1.28; }
+  .closing-panel{ padding:14px 18px 12px;display:flex;flex-direction:column; }
+  .closing-panel .script{ font-size:31px;text-align:right;margin:6px 12px;line-height:1.2; }
+  .footer-bar{ border:1px solid var(--fw-gold);text-align:center;padding:8px 0;font-size:14px;letter-spacing:.13em; }
+  .botanical{ position:absolute;width:150px;height:260px;opacity:.16;color:var(--fw-burgundy); }
+  .botanical.tl{ left:-64px;top:-50px;transform:rotate(-25deg); }
+  .botanical.tr{ right:-66px;top:-40px;transform:scaleX(-1) rotate(-25deg);color:var(--fw-gold-deep); }
+  .botanical.bl{ left:-65px;bottom:-35px;transform:rotate(190deg);color:var(--fw-gold-deep); }
+  .botanical.br{ right:-65px;bottom:-35px;transform:rotate(160deg); }
   @media (prefers-reduced-motion: reduce){
     *{ animation: none !important; transition: none !important; }
   }
+
+  .price-panel{ padding:30px 36px;display:flex;flex-direction:column;justify-content:center;gap:26px; }
+  .price-layout{ display:grid;grid-template-columns:1fr 270px;gap:28px;align-items:center; }
+  .promise{ text-align:center; }
+  .promise > .caps{ font-size:19px;color:var(--fw-burgundy); }
+  .promise h2{ font-size:50px;font-weight:400;line-height:1.05;margin:16px 0; }
+  .promise h2 em{ color:var(--fw-burgundy);font-weight:400; }
+  .promise p{ font-family:'Jost',sans-serif;font-size:20px;line-height:1.4;color:var(--fw-charcoal-muted); }
+  .price-seal{ width:246px;height:246px;margin:auto; }
+  .price-seal .caps{ font-size:21px; }
+  .price-total{ font-size:78px; }
+  .price-inclusions{ font-family:'Jost',sans-serif;font-size:15px;line-height:1.3;width:190px;margin-top:12px;color:var(--fw-charcoal-muted); }
+  .steps{ margin-top:44px;gap:22px; }
+  .icon-frame{ width:92px;height:92px;margin-bottom:22px; }
+  .icon-frame > svg{ width:50px;height:50px; }
+  .step:not(:last-child):after{ right:-17px;top:27px; }
+  .step h3{ font-size:22px;line-height:1.15;letter-spacing:.06em;max-width:200px;margin:0 auto; }
+  .closing-panel{ padding:24px 24px 18px;justify-content:space-between; }
+  .addon-strip{ display:flex;justify-content:center;gap:12px;margin-top:18px; }
+  .addon-pill{ border:1px solid var(--fw-gold);border-radius:40px;background:var(--fw-burgundy);color:var(--fw-cream);padding:12px 18px;font-family:'Jost',sans-serif;font-size:18px;white-space:nowrap; }
+  .closing-panel .script{ text-align:center;font-size:36px;margin:16px 0; }
+  .footer-bar{ font-size:16px;letter-spacing:.08em;padding:12px 0; }
 </style>
 </head>
 <body>
@@ -184,12 +162,23 @@
 <script type="text/babel" data-presets="react">
 const { useEffect, useState, useRef, useMemo } = React;
 const m = window.Motion.motion;
-
 function App(){
-
+  // staggered spring entry (same as slide 1)
   const springIn = (delay=0)=>({
     initial:{ opacity:0, y:40, scale:0.95 },
     animate:{ opacity:1, y:0, scale:1 },
+    transition:{ type:'spring', stiffness:100, damping:15, delay }
+  });
+
+  const springInLeft = (delay=0)=>({
+    initial:{ opacity:0, x:-50, scale:0.95 },
+    animate:{ opacity:1, x:0, scale:1 },
+    transition:{ type:'spring', stiffness:100, damping:15, delay }
+  });
+
+  const springInRight = (delay=0)=>({
+    initial:{ opacity:0, x:50, scale:0.95 },
+    animate:{ opacity:1, x:0, scale:1 },
     transition:{ type:'spring', stiffness:100, damping:15, delay }
   });
 
@@ -198,7 +187,8 @@ function App(){
     transition:{ duration:4, repeat:Infinity, ease:'easeInOut', delay: phase }
   });
 
-  const GoldFrame = ({ r=28, delay=0.4, color="rgba(184,150,90,0.55)" })=> (
+  // gold border draw (same as slide 1)
+  const GoldFrame = ({ r=28, delay=0.4, color="rgba(201,162,74,0.55)" })=> (
     <svg className="gold-frame" viewBox="0 0 100 100" preserveAspectRatio="none">
       <m.rect
         x="0.5" y="0.5" width="99" height="99" rx={r/2.4} ry={r/2.4}
@@ -211,36 +201,6 @@ function App(){
     </svg>
   );
 
-  // Hairline-drawing eyebrow header (rules grow outward from center text)
-  const EyebrowHeader = ({ children, color="var(--charcoal-muted)", delay=0 })=>(
-    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'20px', position:'relative' }}>
-      <m.div className="hair-rule"
-        initial={{ scaleX:0, opacity:0 }} animate={{ scaleX:1, opacity:1 }}
-        transition={{ duration:0.9, delay, ease:'easeOut' }}
-        style={{ transformOrigin:'right center' }}/>
-      <span className="eyebrow" style={{ fontSize:'14px', color, letterSpacing:'0.26em', whiteSpace:'nowrap' }}>
-        {children}
-      </span>
-      <m.div className="hair-rule"
-        initial={{ scaleX:0, opacity:0 }} animate={{ scaleX:1, opacity:1 }}
-        transition={{ duration:0.9, delay, ease:'easeOut' }}
-        style={{ transformOrigin:'left center' }}/>
-    </div>
-  );
-
-  const RoseBullet = ()=>(
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <path d="M12 4 C 9.5 6, 9 9, 12 12 C 15 9, 14.5 6, 12 4 Z"
-        stroke="#C25E7A" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(194,94,122,0.30)"/>
-      <path d="M6 11 C 7.5 8.5, 10 9, 12 12 C 10 13.5, 7.5 13, 6 11 Z"
-        stroke="#C25E7A" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(194,94,122,0.18)"/>
-      <path d="M18 11 C 16.5 8.5, 14 9, 12 12 C 14 13.5, 16.5 13, 18 11 Z"
-        stroke="#C25E7A" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(194,94,122,0.18)"/>
-      <path d="M12 12 V 19" stroke="#A84862" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M12 16 C 13.5 14.5, 15.5 15, 16 16.5 C 14.5 17.5, 12.5 17, 12 16 Z"
-        stroke="#A84862" strokeWidth="1.2" strokeLinejoin="round" fill="rgba(168,72,98,0.22)"/>
-    </svg>
-  );
 
   const benefits = [
     { icon: <AromaIcon/>,    title:'Rose-Champagne Aroma',
@@ -263,370 +223,118 @@ function App(){
     'Steam Therapy',
   ];
 
-  return (
-    <>
-      {/* atmospheric stage */}
-      <div className="stage" aria-hidden="true">
-        <m.div className="orb orb-1"
-          animate={{ x:[0,30,-10,0], y:[0,-20,10,0] }}
-          transition={{ duration:18, repeat:Infinity, ease:'easeInOut' }} />
-        <m.div className="orb orb-2"
-          animate={{ x:[0,-25,15,0], y:[0,15,-12,0] }}
-          transition={{ duration:22, repeat:Infinity, ease:'easeInOut', delay:1.5 }} />
-        <m.div className="orb orb-3"
-          animate={{ x:[0,18,-22,0], y:[0,-14,8,0] }}
-          transition={{ duration:20, repeat:Infinity, ease:'easeInOut', delay:0.8 }} />
-        <m.div className="orb orb-4"
-          animate={{ x:[0,-18,22,0], y:[0,12,-18,0] }}
-          transition={{ duration:24, repeat:Infinity, ease:'easeInOut', delay:2.2 }} />
-        <m.div className="orb orb-rose"
-          animate={{ x:[0,22,-14,0], y:[0,-16,18,0] }}
-          transition={{ duration:21, repeat:Infinity, ease:'easeInOut', delay:1.0 }} />
-        <m.div className="orb orb-blush"
-          animate={{ x:[0,-20,16,0], y:[0,14,-10,0] }}
-          transition={{ duration:23, repeat:Infinity, ease:'easeInOut', delay:1.8 }} />
-
-        {/* corner rose-petal decorations — very subtle */}
-        <svg className="petal-deco" style={{ top:'38px', right:'28px', width:'150px', height:'150px' }} viewBox="0 0 100 100">
-          <g stroke="#C25E7A" strokeWidth="0.6" fill="rgba(194,94,122,0.30)">
-            <path d="M50 28 C 42 20, 42 8, 50 4 C 58 8, 58 20, 50 28 Z"/>
-            <path d="M68 40 C 76 34, 88 36, 90 44 C 84 50, 72 48, 68 40 Z"/>
-            <path d="M62 62 C 70 60, 80 66, 80 74 C 72 76, 62 70, 62 62 Z"/>
-            <path d="M38 62 C 30 60, 20 66, 20 74 C 28 76, 38 70, 38 62 Z"/>
-            <path d="M32 40 C 24 34, 12 36, 10 44 C 16 50, 28 48, 32 40 Z"/>
-          </g>
-          <circle cx="50" cy="44" r="9" stroke="#A84862" strokeWidth="0.6" fill="rgba(168,72,98,0.28)"/>
-        </svg>
-        <svg className="petal-deco" style={{ bottom:'30px', left:'24px', width:'160px', height:'160px', transform:'scaleX(-1)' }} viewBox="0 0 100 100">
-          <g stroke="#C25E7A" strokeWidth="0.55" fill="rgba(194,94,122,0.24)">
-            <path d="M50 30 C 43 22, 43 10, 50 6 C 57 10, 57 22, 50 30 Z"/>
-            <path d="M68 42 C 76 36, 86 38, 88 46 C 82 52, 71 50, 68 42 Z"/>
-            <path d="M32 42 C 24 36, 14 38, 12 46 C 18 52, 29 50, 32 42 Z"/>
-            <path d="M42 64 C 36 62, 26 68, 26 76 C 34 78, 44 72, 42 64 Z"/>
-          </g>
-          <circle cx="50" cy="46" r="8" stroke="#A84862" strokeWidth="0.55" fill="rgba(168,72,98,0.22)"/>
-        </svg>
-
-        <div className="grain"/>
-      </div>
-
-      {/* content frame */}
-      <div className="relative w-full h-full" style={{ padding:'40px 60px', display:'grid',
-        gridTemplateColumns:'repeat(6, 1fr)',
-        gridTemplateRows:'70px 600px 178px 46px 272px 348px 68px',
-        gap:'17px'
-      }}>
-
-        {/* ─── Row A — brand strip ─── */}
-        <m.div {...springIn(0.05)} style={{ gridColumn:'1 / -1', gridRow:'1' }}
-          className="glass glass-strong flex items-center justify-between px-9">
-          <GoldFrame delay={0.5}/>
-          <div className="flex items-baseline gap-4">
-            <span className="display tabular" style={{ fontSize:'30px', fontWeight:800, letterSpacing:'-0.04em' }}>
-              DELUXE
-            </span>
-            <span className="eyebrow" style={{ fontSize:'14px', color:'var(--charcoal-soft)' }}>
-              Nail Spa
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="pin-dot-rose"/>
-            <span className="eyebrow" style={{ fontSize:'13px', color:'var(--rose-soft)' }}>
-              New · Intro Offer
-            </span>
-          </div>
-        </m.div>
-
-        {/* ─── Row B — Hero card with title overlay ─── */}
-        <m.div {...springIn(0.15)} style={{ gridColumn:'1 / -1', gridRow:'2' }}
-          className="glass relative overflow-hidden">
-          <m.div style={{ width:'100%', height:'100%' }}
-            initial={{ scale:0.92 }}
-            animate={{ scale:[1, 1.015, 1] }}
-            transition={{ scale:{ duration:5, repeat:Infinity, ease:'easeInOut' } }}>
-            <img src="assets/romantic-rose-hero.png" alt="Rose-petal spa pedicure soak with bubbles and candle"
-              className="hero-img"
-              style={{ display:'block' }}
-              onError={(e)=>{ e.currentTarget.style.display='none'; e.currentTarget.parentElement.insertAdjacentHTML('beforeend', '<div class=\"hero-fallback\"></div>'); }}/>
-          </m.div>
-          <div className="hero-vignette"/>
-
-          {/* eyebrow pill top-left */}
-          <m.div className="hero-eyebrow-pill absolute"
-            style={{ top:'24px', left:'24px', padding:'10px 18px', borderRadius:'999px',
-              display:'inline-flex', alignItems:'center', gap:'10px' }}
-            initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }}
-            transition={{ delay:0.9, duration:0.6 }}>
-            <span style={{ width:'8px', height:'8px', background:'var(--rose)', borderRadius:'50%' }}/>
-            <span className="eyebrow" style={{ fontSize:'12px', color:'var(--charcoal)', letterSpacing:'0.22em' }}>
-              Deluxe Pedicure · Romantic Treatment
-            </span>
-          </m.div>
-
-          {/* title block bottom-left */}
-          <div className="absolute" style={{ left:'40px', right:'40px', bottom:'34px' }}>
-            <m.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }}
-              transition={{ delay:1.0, duration:0.7, ease:'easeOut' }}>
-              <div className="eyebrow" style={{ fontSize:'13px', color:'#F6DCE4', marginBottom:'12px', letterSpacing:'0.22em' }}>
-                Limited Intro Offer
-              </div>
-              <h1 className="display" style={{
-                fontSize:'80px', fontWeight:800, lineHeight:0.94, letterSpacing:'-0.05em',
-                color:'#FFF4F7', margin:0,
-                textShadow:'0 2px 16px rgba(60,20,32,0.50)'
-              }}>
-                Romantic Rose<br/>Pedicure
-              </h1>
-              <div style={{
-                fontFamily:'Inter Tight', fontWeight:500, fontStyle:'italic',
-                fontSize:'24px', letterSpacing:'-0.015em',
-                color:'#F8E4EA', lineHeight:1.3, marginTop:'14px', maxWidth:'640px',
-                textShadow:'0 2px 12px rgba(60,20,32,0.50)'
-              }}>
-                Indulge in romance. Leave with radiance.
-              </div>
-            </m.div>
-          </div>
-
-          <GoldFrame delay={0.7}/>
-        </m.div>
-
-        {/* ─── Row C — Tagline (cols 1–4) + Intro-price pill (cols 5–6) ─── */}
-        <m.div {...springIn(0.30)} style={{ gridColumn:'1 / span 4', gridRow:'3' }}
-          className="glass flex items-center px-9">
-          <GoldFrame delay={0.95}/>
-          <m.div {...breathe(0.2)}>
-            <div className="eyebrow" style={{ fontSize:'12px', color:'var(--rose-soft)', marginBottom:'10px' }}>
-              The Promise
-            </div>
-            <div className="display" style={{
-              fontSize:'38px', fontWeight:700, lineHeight:1.04, letterSpacing:'-0.035em',
-              color:'var(--charcoal)'
-            }}>
-              Soft. Fizzy. <em style={{ fontStyle:'italic', color:'var(--rose)', fontWeight:600 }}>Radiant.</em>
-            </div>
-            <div style={{
-              fontFamily:'Inter Tight', fontStyle:'italic',
-              fontSize:'17px', fontWeight:500, color:'var(--gold)',
-              marginTop:'8px', lineHeight:1.4, letterSpacing:'-0.01em'
-            }}>
-              Rose-champagne soak · collagen hydration
-            </div>
-            <div style={{
-              fontSize:'13px', fontWeight:400, color:'var(--charcoal-muted)',
-              marginTop:'12px', letterSpacing:'0.01em'
-            }}>
-              Gel polish &amp; add-ons available
-            </div>
-          </m.div>
-        </m.div>
-
-        <m.div style={{ gridColumn:'5 / span 2', gridRow:'3', position:'relative' }}
-          initial={{ opacity:0, scale:0.4, y:30 }}
-          animate={{ opacity:1, scale:1, y:0 }}
-          transition={{ type:'spring', stiffness:220, damping:11, delay:0.45 }}>
-          <m.div
-            className="price-pill-rose"
-            animate={{
-              boxShadow: [
-                '0 30px 66px -16px rgba(140, 50, 75, 0.52), 0 12px 26px -8px rgba(140, 50, 75, 0.32), inset 0 1px 0 rgba(255,220,232,0.40), inset 0 -1px 0 rgba(90,28,45,0.28)',
-                '0 30px 86px -12px rgba(170, 70, 100, 0.70), 0 16px 34px -8px rgba(170, 70, 100, 0.46), inset 0 1px 0 rgba(255,228,238,0.50), inset 0 -1px 0 rgba(90,28,45,0.28)',
-                '0 30px 66px -16px rgba(140, 50, 75, 0.52), 0 12px 26px -8px rgba(140, 50, 75, 0.32), inset 0 1px 0 rgba(255,220,232,0.40), inset 0 -1px 0 rgba(90,28,45,0.28)'
-              ]
-            }}
-            transition={{ duration:3, repeat:Infinity, ease:'easeInOut' }}
-            style={{
-              height:'100%', aspectRatio:'1 / 1', borderRadius:'50%',
-              margin:'0 auto',
-              display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
-              position:'relative'
-            }}>
-            <div className="eyebrow" style={{
-              fontSize:'12px', color:'rgba(255, 225, 235, 0.90)',
-              letterSpacing:'0.30em', marginBottom:'0px'
-            }}>
-              From
-            </div>
-            <div className="display tabular" style={{
-              fontSize:'88px', fontWeight:700, letterSpacing:'-0.05em',
-              lineHeight:1, color:'#FFF4F7',
-              display:'flex', alignItems:'baseline'
-            }}>
-              <span style={{
-                fontSize:'40px', fontWeight:600, color:'#FBD9E2',
-                marginRight:'4px', transform:'translateY(-20px)', display:'inline-block'
-              }}>$</span>
-              75
-            </div>
-          </m.div>
-        </m.div>
-
-        {/* ─── Row D — eyebrow header ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'4', display:'flex', alignItems:'center' }}>
-          <div style={{ width:'100%' }}>
-            <EyebrowHeader color="var(--rose-soft)" delay={0.6}>
-              Why You'll Love It
-            </EyebrowHeader>
-          </div>
+  const ritualIcons = [<BubbleIcon/>, <ScrubIcon/>, <JarIcon/>, <LotionIcon/>];
+  return <>
+    <div className="stage" aria-hidden="true">
+      {[1,2,3].map(n=><m.div key={n} className={'orb orb-'+n} animate={{x:[0,25,-15,0],y:[0,-18,12,0]}} transition={{duration:18+n*2,repeat:Infinity,ease:'easeInOut',delay:n*.4}}/>)}
+      {['tl','tr','bl','br'].map(c=><BotanicalCorner key={c} corner={c}/>)}
+    </div>
+    <div className="content-frame">
+      <m.div className="glass glass-strong header-row" {...springIn(.05)}>
+        <GoldFrame delay={.5}/><HeaderRow/><DividerRule/>
+      </m.div>
+      <m.div className="glass glass-strong headline-panel" {...springIn(.15)}>
+        <GoldFrame delay={.7}/>
+        <h1>Romantic <em>Rose</em><br/>Pedicure</h1>
+        <p className="caps">Deluxe Pedicure · Romantic Treatment</p>
+        <p className="intro">Indulge in romance. Leave with radiance.</p>
+      </m.div>
+      <m.div className="glass glass-strong price-panel" {...springIn(.25)}>
+        <GoldFrame delay={.85}/><DividerRule/>
+        <div className="price-layout">
+          <m.div className="promise" {...springInLeft(.35)}><m.div {...breathe(.1)}>
+            <div className="caps">The Promise</div>
+            <h2>Soft. Fizzy. <em>Radiant.</em></h2>
+            <p>Rose-champagne soak · collagen hydration</p>
+          </m.div></m.div>
+          <m.div {...springInRight(.4)}><PriceSeal/></m.div>
         </div>
-
-        {/* ─── Row E — 3 benefit cards ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'5',
-          display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'18px' }}>
-          {benefits.map((b,i)=>(
-            <m.div key={i} {...springIn(0.70 + i*0.08)}
-              className="glass px-7 py-7 flex flex-col justify-between relative">
-              <m.div {...breathe(i*0.3)}>
-                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-                  <div style={{ width:'56px', height:'56px', borderRadius:'16px',
-                    background:'linear-gradient(135deg, rgba(248,225,232,0.95), rgba(232,180,196,0.82))',
-                    border:'1px solid rgba(194,94,122,0.34)',
-                    display:'flex', alignItems:'center', justifyContent:'center',
-                    boxShadow:'inset 0 1px 0 rgba(255,255,255,0.6), 0 5px 12px -3px rgba(140,50,75,0.22)' }}>
-                    {b.icon}
-                  </div>
-                  <span className="eyebrow tabular" style={{ fontSize:'11px', color:'var(--charcoal-muted)' }}>
-                    0{i+1}
-                  </span>
-                </div>
-                <div className="display" style={{
-                  fontSize:'25px', fontWeight:700, letterSpacing:'-0.03em',
-                  marginTop:'20px', color:'var(--charcoal)', lineHeight:1.08
-                }}>
-                  {b.title}
-                </div>
-                <div style={{
-                  fontSize:'15px', fontWeight:400, color:'var(--charcoal-soft)',
-                  marginTop:'10px', lineHeight:1.4
-                }}>
-                  {b.body}
-                </div>
-              </m.div>
-              <GoldFrame delay={0.95 + i*0.1} r={22}/>
-            </m.div>
-          ))}
+        <DividerRule/>
+      </m.div>
+      <m.div className="glass info-strip" {...springIn(.65)}>
+        <GoldFrame delay={1}/>
+        {benefits.map(b=><InfoItem key={b.title} {...b}/>)}
+      </m.div>
+      <m.div className="glass glass-strong ritual-panel" {...springIn(.85)}>
+        <GoldFrame delay={1.3}/><DividerRule><h2 className="caps section-title">What's Included</h2></DividerRule>
+        <div className="steps">{included.map((title,i)=><m.div className="step" key={title} initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:.85+i*.08,duration:.55,ease:'easeOut'}}>
+          <div className="icon-frame"><m.span className="step-num" initial={{scale:0,opacity:0}} animate={{scale:1,opacity:1}} transition={{delay:.92+i*.08,type:'spring',stiffness:260,damping:14}}>{i+1}</m.span>{ritualIcons[i]}</div>
+          <h3 className="caps">{title}</h3>
+        </m.div>)}</div>
+      </m.div>
+      <m.div className="glass glass-strong closing-panel" {...springIn(1.15)}>
+        <GoldFrame delay={1.6}/>
+        <div><DividerRule><h2 className="caps section-title">+ Optional Add-Ons</h2></DividerRule>
+          <div className="addon-strip">{addOns.map(item=><span className="addon-pill" key={item}>{item}</span>)}</div>
         </div>
-
-        {/* ─── Row F — Two-column lists (Included | Add-Ons) ─── */}
-        <m.div {...springIn(1.1)} style={{ gridColumn:'1 / -1', gridRow:'6', position:'relative' }}
-          className="glass glass-strong">
-          <GoldFrame delay={1.5}/>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1px 1fr', height:'100%' }}>
-
-            {/* LEFT — What's Included */}
-            <div style={{ padding:'34px 44px 34px 48px', display:'flex', flexDirection:'column' }}>
-              <div className="eyebrow" style={{ fontSize:'13px', color:'var(--rose-soft)', letterSpacing:'0.24em', marginBottom:'6px' }}>
-                What's Included
-              </div>
-              <div className="display" style={{ fontSize:'19px', fontWeight:600, color:'var(--charcoal-muted)', letterSpacing:'-0.02em', marginBottom:'24px' }}>
-                Every visit, every time.
-              </div>
-              <div style={{ display:'flex', flexDirection:'column', gap:'20px', flex:1, justifyContent:'center' }}>
-                {included.map((item,i)=>(
-                  <m.div key={i}
-                    initial={{ opacity:0, y:14 }} animate={{ opacity:1, y:0 }}
-                    transition={{ delay:1.2 + i*0.07, duration:0.5, ease:'easeOut' }}
-                    style={{ display:'flex', alignItems:'center', gap:'16px' }}>
-                    <span className="rose-bullet"><RoseBullet/></span>
-                    <span style={{
-                      fontFamily:'Inter Tight', fontWeight:600, fontSize:'24px',
-                      letterSpacing:'-0.02em', color:'var(--charcoal)'
-                    }}>
-                      {item}
-                    </span>
-                  </m.div>
-                ))}
-              </div>
-            </div>
-
-            {/* CENTER divider + rose motif */}
-            <div style={{ position:'relative' }}>
-              <div style={{ position:'absolute', inset:0,
-                background:'linear-gradient(180deg, transparent, rgba(184,150,90,0.50) 18%, rgba(184,150,90,0.50) 82%, transparent)' }}/>
-              <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)',
-                width:'46px', height:'46px', borderRadius:'50%',
-                background:'rgba(255,251,246,0.85)', border:'1px solid rgba(194,94,122,0.40)',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                boxShadow:'0 4px 12px -3px rgba(140,50,75,0.25), inset 0 1px 0 rgba(255,255,255,0.6)' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 4 C 9.5 6, 9 9, 12 12 C 15 9, 14.5 6, 12 4 Z" stroke="#C25E7A" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(194,94,122,0.32)"/>
-                  <path d="M6 11 C 7.5 8.5, 10 9, 12 12 C 10 13.5, 7.5 13, 6 11 Z" stroke="#C25E7A" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(194,94,122,0.20)"/>
-                  <path d="M18 11 C 16.5 8.5, 14 9, 12 12 C 14 13.5, 16.5 13, 18 11 Z" stroke="#C25E7A" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(194,94,122,0.20)"/>
-                  <path d="M12 12 V 19" stroke="#A84862" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
-            </div>
-
-            {/* RIGHT — Optional Add-Ons */}
-            <div style={{ padding:'34px 48px 34px 44px', display:'flex', flexDirection:'column' }}>
-              <div className="eyebrow" style={{ fontSize:'13px', color:'var(--rose-soft)', letterSpacing:'0.24em', marginBottom:'6px' }}>
-                Optional Add-Ons
-              </div>
-              <div className="display" style={{ fontSize:'19px', fontWeight:600, color:'var(--charcoal-muted)', letterSpacing:'-0.02em', marginBottom:'24px' }}>
-                Make it extra special.
-              </div>
-              <div style={{ display:'flex', flexDirection:'column', gap:'20px', flex:1, justifyContent:'center' }}>
-                {addOns.map((item,i)=>(
-                  <m.div key={i}
-                    initial={{ opacity:0, y:14 }} animate={{ opacity:1, y:0 }}
-                    transition={{ delay:1.45 + i*0.07, duration:0.5, ease:'easeOut' }}
-                    style={{ display:'flex', alignItems:'center', gap:'16px' }}>
-                    <span className="rose-bullet"><RoseBullet/></span>
-                    <span style={{
-                      fontFamily:'Inter Tight', fontWeight:600, fontSize:'24px',
-                      letterSpacing:'-0.02em', color:'var(--charcoal)'
-                    }}>
-                      {item}
-                    </span>
-                  </m.div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </m.div>
-
-        {/* ─── Row G — Footer pill ─── */}
-        <m.div {...springIn(1.8)} style={{ gridColumn:'1 / -1', gridRow:'7' }}
-          className="glass glass-strong flex items-center justify-center relative">
-          <GoldFrame delay={2.0}/>
-          <m.div {...breathe(1.5)} style={{ display:'flex', alignItems:'center', gap:'16px' }}>
-            <span style={{
-              fontFamily:'Inter Tight', fontWeight:600, fontStyle:'italic', fontSize:'25px',
-              letterSpacing:'-0.02em', color:'var(--charcoal)',
-              display:'inline-flex', alignItems:'center', gap:'14px'
-            }}>
-              Treat yourself · Ask the front desk about the intro offer
-              <m.span
-                animate={{ x:[0,6,0] }} transition={{ duration:1.6, repeat:Infinity, ease:'easeInOut' }}
-                style={{ display:'inline-flex' }}>
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M5 14 H22 M16 8 L22 14 L16 20" stroke="#C25E7A" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </m.span>
-            </span>
-          </m.div>
-        </m.div>
-
-      </div>
-    </>
-  );
+        <p className="script">Indulge in romance. Leave with radiance.</p>
+        <FooterBar/>
+      </m.div>
+    </div>
+  </>;
 }
 
-/* ── benefit icons ─────────────────────────────────────────── */
+function HeaderRow(){return <>
+  <div><div className="caps wordmark" aria-label="DELUXE NAIL SPA">DELU<span>X</span>E NAIL SPA</div><div className="caps brand-subline">BEAUTY · CARE · RELAXATION</div></div>
+  <div className="collection-lockup"><div className="caps collection-badge">New · Intro Offer<span>Deluxe Pedicure · Romantic Treatment</span></div></div>
+</>;}
+function PriceSeal(){return <div className="price-seal"><div className="caps">From</div><div className="price-total">$75</div><div className="price-inclusions">Gel polish &amp; add-ons available</div></div>;}
+function InfoItem({icon,title,body}){return <div className="info-item">{icon}<h3 className="caps">{title}</h3><p>{body}</p></div>;}
+function FooterBar(){return <div className="caps footer-bar">Treat yourself · Ask the front desk about the intro offer</div>;}
+function DividerRule({children}){return <div className="divider-rule"><LeafIcon/>{children}{children && <LeafIcon/>}</div>;}
+function LeafIcon(){return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20Q2 3 21 3Q21 21 4 20ZM4 20L16 8" stroke="currentColor" strokeWidth="1.4" fill="rgba(201,162,74,.12)"/></svg>;}
+function BotanicalCorner({corner}){return <svg className={'botanical '+corner} viewBox="0 0 150 260" fill="none"><path d="M70 250Q110 125 55 10" stroke="currentColor" strokeWidth="2"/>{[0,1,2,3,4].map(n=><g key={n} transform={'translate(0 '+n*43+')'}><path d="M77 48Q12 35 34 3Q75 14 77 48ZM80 58Q135 40 121 13Q87 23 80 58Z" fill="currentColor"/></g>)}</svg>;}
+function ScrubIcon(){
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <path d="M8 22 L 12 12 H 24 L 28 22 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
+      <line x1="8" y1="22" x2="28" y2="22" stroke="var(--fw-charcoal)" strokeWidth="1.6"/>
+      <circle cx="14" cy="17" r="1.1" fill="var(--fw-gold-deep)"/>
+      <circle cx="18" cy="15" r="1.1" fill="var(--fw-gold-deep)"/>
+      <circle cx="22" cy="18" r="1.1" fill="var(--fw-gold-deep)"/>
+      <circle cx="16" cy="20" r="0.9" fill="var(--fw-gold-deep)"/>
+      <circle cx="21" cy="20" r="0.9" fill="var(--fw-gold-deep)"/>
+      <path d="M11 26 H 25" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+function JarIcon(){
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <rect x="10" y="8" width="16" height="4" rx="1.2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
+      <path d="M11 12 H 25 V 27 C 25 28.5, 23.5 29, 22 29 H 14 C 12.5 29, 11 28.5, 11 27 Z"
+        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
+      <path d="M14 18 C 16 16, 20 16, 22 18" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+      <path d="M13 22 C 16 20, 20 20, 23 22" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+    </svg>
+  );
+}
+function LotionIcon(){
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <path d="M15 8 H 21 V 11 H 15 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
+      <path d="M13 11 H 23 L 22 14 H 14 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
+      <path d="M14 14 H 22 V 28 C 22 29, 21 29.5, 20 29.5 H 16 C 15 29.5, 14 29, 14 28 Z"
+        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.15)"/>
+      <path d="M21 8 V 5 H 24 V 7" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <line x1="16" y1="20" x2="20" y2="20" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
+      <line x1="16" y1="23" x2="20" y2="23" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  );
+}
 function AromaIcon(){
   return (
     <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
       {/* rose bloom */}
       <path d="M16 13 C 12.5 16, 12 21, 16 25 C 20 21, 19.5 16, 16 13 Z"
-        stroke="#1F1B16" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(194,94,122,0.30)"/>
+        stroke="var(--fw-burgundy)" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(122,33,48,0.30)"/>
       <path d="M8 20 C 10 16, 13.5 17, 16 25 C 13 26.5, 9.5 25, 8 20 Z"
-        stroke="#1F1B16" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(194,94,122,0.18)"/>
+        stroke="var(--fw-burgundy)" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(122,33,48,0.18)"/>
       <path d="M24 20 C 22 16, 18.5 17, 16 25 C 19 26.5, 22.5 25, 24 20 Z"
-        stroke="#1F1B16" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(194,94,122,0.18)"/>
+        stroke="var(--fw-burgundy)" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(122,33,48,0.18)"/>
       {/* aroma wisps */}
-      <path d="M13 9 C 13 7, 15 7, 15 5 C 15 3, 13 3, 13 1.5" stroke="#C25E7A" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M19 9 C 19 7, 17 7, 17 5 C 17 3, 19 3, 19 1.5" stroke="#C25E7A" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+      <path d="M13 9 C 13 7, 15 7, 15 5 C 15 3, 13 3, 13 1.5" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+      <path d="M19 9 C 19 7, 17 7, 17 5 C 17 3, 19 3, 19 1.5" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
@@ -635,13 +343,13 @@ function BubbleIcon(){
     <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
       {/* bowl */}
       <path d="M5 17 H 27 C 26 25, 21.5 29, 16 29 C 10.5 29, 6 25, 5 17 Z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(194,94,122,0.22)"/>
-      <ellipse cx="16" cy="17" rx="11" ry="2" stroke="#1F1B16" strokeWidth="1.5" fill="rgba(194,94,122,0.30)"/>
+        stroke="var(--fw-burgundy)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(122,33,48,0.22)"/>
+      <ellipse cx="16" cy="17" rx="11" ry="2" stroke="var(--fw-burgundy)" strokeWidth="1.5" fill="rgba(122,33,48,0.30)"/>
       {/* fizzing bubbles */}
-      <circle cx="13" cy="12" r="2.4" stroke="#C25E7A" strokeWidth="1.3" fill="rgba(232,180,196,0.50)"/>
-      <circle cx="19" cy="9" r="1.8" stroke="#C25E7A" strokeWidth="1.2" fill="rgba(232,180,196,0.50)"/>
-      <circle cx="16" cy="6" r="1.3" stroke="#C25E7A" strokeWidth="1.1" fill="rgba(232,180,196,0.45)"/>
-      <circle cx="22" cy="13" r="1.4" stroke="#C25E7A" strokeWidth="1.1" fill="rgba(232,180,196,0.45)"/>
+      <circle cx="13" cy="12" r="2.4" stroke="var(--fw-gold-deep)" strokeWidth="1.3" fill="rgba(201,162,74,0.50)"/>
+      <circle cx="19" cy="9" r="1.8" stroke="var(--fw-gold-deep)" strokeWidth="1.2" fill="rgba(201,162,74,0.50)"/>
+      <circle cx="16" cy="6" r="1.3" stroke="var(--fw-gold-deep)" strokeWidth="1.1" fill="rgba(201,162,74,0.45)"/>
+      <circle cx="22" cy="13" r="1.4" stroke="var(--fw-gold-deep)" strokeWidth="1.1" fill="rgba(201,162,74,0.45)"/>
     </svg>
   );
 }
@@ -650,11 +358,11 @@ function CollagenIcon(){
     <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
       {/* droplet */}
       <path d="M16 4 C 16 4, 8 13, 8 19 a8 8 0 0 0 16 0 C 24 13, 16 4, 16 4 Z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(194,94,122,0.26)"/>
-      <path d="M12 19 a4 4 0 0 0 4 4" stroke="#C25E7A" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+        stroke="var(--fw-burgundy)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(122,33,48,0.26)"/>
+      <path d="M12 19 a4 4 0 0 0 4 4" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
       {/* shimmer */}
-      <circle cx="20" cy="9" r="1.1" fill="#C25E7A"/>
-      <path d="M22 14 l1 1 l-1 1 l-1 -1 Z" fill="rgba(194,94,122,0.65)"/>
+      <circle cx="20" cy="9" r="1.1" fill="var(--fw-gold-deep)"/>
+      <path d="M22 14 l1 1 l-1 1 l-1 -1 Z" fill="rgba(122,33,48,0.65)"/>
     </svg>
   );
 }

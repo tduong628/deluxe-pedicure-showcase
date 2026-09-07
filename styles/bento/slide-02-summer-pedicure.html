@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=1080, initial-scale=1" />
-<title>Deluxe Nail Spa — Summer Pedicure Special</title>
+<title>Deluxe Nail Spa — Fall/Winter Pedicure Special</title>
 
 <!-- fonts vendored locally -->
 
 <link href="../../vendor/fonts/fonts.css" rel="stylesheet">
+<link href="../../vendor/fonts-editorial/fonts-editorial.css" rel="stylesheet">
 
 <link href="../../vendor/mini-tw.css" rel="stylesheet">
 <script src="../../vendor/react.production.min.js"></script>
@@ -31,13 +32,15 @@
     --glass-stroke:rgba(255, 255, 255, 0.55);
     --glass-shadow: 0 24px 60px -20px rgba(60, 40, 20, 0.22), 0 6px 16px -8px rgba(60, 40, 20, 0.16);
 
-    /* Slide 2 special-edition additions */
-    --oxblood:#722F37;
-    --oxblood-deep:#5C242B;
-    --oxblood-soft:rgba(114,47,55,0.86);
-    --pom-red:#A8323A;
-    --blossom-pink:#E8B4C0;
-    --blossom-soft:#F2D4DC;
+
+    --fw-cream:#F7ECD8;
+    --fw-cream-deep:#F3E3C9;
+    --fw-burgundy:#7A2130;
+    --fw-burgundy-light:#8C2A3A;
+    --fw-gold:#C9A24A;
+    --fw-gold-deep:#B8862E;
+    --fw-charcoal:#2B221A;
+    --fw-charcoal-muted:rgba(43,34,26,0.62);
   }
   html, body{
     width:1080px; height:1920px; margin:0; padding:0;
@@ -49,42 +52,6 @@
     text-rendering: optimizeLegibility;
   }
   #root{ width:1080px; height:1920px; position:relative; }
-  .display{ font-family:'Inter Tight', 'Inter', sans-serif; letter-spacing:-0.035em; }
-  .tabular{ font-variant-numeric: tabular-nums; }
-  .eyebrow{ font-family:'Inter', sans-serif; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; }
-
-  .stage{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 900px 700px at 18% 18%, rgba(232, 196, 180, 0.85), transparent 60%),
-      radial-gradient(ellipse 800px 600px at 88% 35%, rgba(245, 230, 216, 0.75), transparent 65%),
-      radial-gradient(ellipse 700px 700px at 30% 90%, rgba(181, 196, 168, 0.45), transparent 65%),
-      radial-gradient(ellipse 1100px 900px at 110% 110%, rgba(212, 184, 160, 0.7), transparent 70%),
-      linear-gradient(168deg, #F5E6D8 0%, #EBD3C0 45%, #E0BFA8 100%);
-  }
-
-  /* atmospheric drifting orbs */
-  .orb{
-    position:absolute; border-radius:50%;
-    filter: blur(60px);
-    mix-blend-mode: multiply;
-    opacity: 0.55;
-    pointer-events:none;
-  }
-  .orb-1{ width:520px; height:520px; left:-80px; top:120px; background: radial-gradient(circle, #E8C4B4 0%, transparent 65%); }
-  .orb-2{ width:600px; height:600px; right:-120px; top:480px; background: radial-gradient(circle, #F5E6D8 0%, transparent 65%); }
-  .orb-3{ width:480px; height:480px; left:60px; bottom:-40px; background: radial-gradient(circle, #B5C4A8 0%, transparent 60%); opacity:0.32; }
-  .orb-4{ width:420px; height:420px; right:80px; bottom:240px; background: radial-gradient(circle, #D4B8A0 0%, transparent 65%); }
-  /* New: pomegranate + blossom motif orbs */
-  .orb-pom{ width:360px; height:360px; left:-40px; top:760px; background: radial-gradient(circle, #C84A55 0%, transparent 60%); opacity:0.22; }
-  .orb-blossom{ width:340px; height:340px; right:-30px; top:820px; background: radial-gradient(circle, #F0BFCB 0%, transparent 65%); opacity:0.35; }
-
-  /* grain overlay */
-  .grain{
-    position:absolute; inset:0; pointer-events:none; opacity:0.07; mix-blend-mode:overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
   .glass{
     position:relative;
     background: var(--glass-fill);
@@ -108,82 +75,88 @@
     border-radius:inherit;
   }
 
-  /* Oxblood "deal" pill — breaks the cream-glass pattern intentionally */
-  .price-pill-oxblood{
-    background:
-      radial-gradient(ellipse 80% 60% at 30% 25%, rgba(255,210,180,0.18), transparent 55%),
-      linear-gradient(155deg, #7D353D 0%, #6A2B33 60%, #5C242B 100%);
-    border: 1.5px solid rgba(212, 184, 134, 0.55);
-    box-shadow:
-      0 28px 60px -16px rgba(80, 25, 30, 0.55),
-      0 10px 22px -8px rgba(80, 25, 30, 0.35),
-      inset 0 1px 0 rgba(255,220,200,0.28),
-      inset 0 -1px 0 rgba(0,0,0,0.25);
-  }
-  .price-pill-oxblood::before{
-    /* subtle inner gold hairline */
-    content:""; position:absolute; inset:6px;
-    border-radius:22px;
-    border: 1px solid rgba(212, 184, 134, 0.35);
-    pointer-events:none;
-  }
 
-  .scent-card-pom{
-    background:
-      radial-gradient(ellipse 100% 80% at 50% 0%, rgba(232, 180, 192, 0.18), transparent 60%),
-      rgba(255, 251, 246, 0.42);
-  }
-  .scent-card-blossom{
-    background:
-      radial-gradient(ellipse 100% 80% at 50% 0%, rgba(240, 191, 203, 0.18), transparent 60%),
-      rgba(255, 251, 246, 0.42);
-  }
-
-  .or-badge{
-    background: linear-gradient(155deg, #7D353D 0%, #5C242B 100%);
-    box-shadow:
-      0 12px 24px -8px rgba(80, 25, 30, 0.45),
-      inset 0 1px 0 rgba(255,220,200,0.35),
-      inset 0 -1px 0 rgba(0,0,0,0.2);
-    border: 1.5px solid rgba(212, 184, 134, 0.5);
-  }
-
-  .step-num{
-    width:42px; height:42px; flex-shrink:0;
-    display:inline-flex; align-items:center; justify-content:center;
-    border-radius:50%;
-    background: linear-gradient(135deg, #D4B886, #B8965A);
-    box-shadow: 0 6px 14px -4px rgba(184,150,90,0.5), inset 0 1px 0 rgba(255,255,255,0.55);
-    color:#FBF3E8;
-    font-family:'Inter Tight', sans-serif;
-    font-weight:700; font-size:20px;
-    letter-spacing:-0.02em;
-  }
-
-  .scent-img-wrap{
-    width:100%; aspect-ratio: 1 / 1;
-    border-radius:22px;
-    overflow:hidden;
-    position:relative;
-    background:
-      radial-gradient(ellipse 90% 75% at 50% 50%, rgba(255, 251, 246, 0.7), rgba(255, 251, 246, 0.25) 65%, rgba(255, 251, 246, 0) 90%);
-    border: 1px solid rgba(184, 150, 90, 0.25);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-  }
-  .scent-img-wrap img{
-    width:100%; height:100%; object-fit:contain;
-    mix-blend-mode: multiply;
-  }
-
-  .pin-dot{
-    width:8px; height:8px; border-radius:50%; background:var(--gold);
-    box-shadow: 0 0 0 4px rgba(184,150,90,0.18);
-  }
-  .pin-dot-oxblood{
-    width:8px; height:8px; border-radius:50%; background:var(--oxblood);
-    box-shadow: 0 0 0 4px rgba(114,47,55,0.20);
-  }
-
+  *{ box-sizing:border-box; }
+  body{ cursor:none; color:var(--fw-charcoal); font-family:'Cormorant Garamond',serif; }
+  h1,h2,h3,p{ margin:0; }
+  .stage{ position:absolute; inset:0; background:radial-gradient(ellipse at 0% 38%,rgba(122,33,48,.14),transparent 52%),radial-gradient(ellipse at 95% 82%,rgba(201,162,74,.24),transparent 55%),linear-gradient(165deg,var(--fw-cream),var(--fw-cream-deep)); }
+  .orb{ position:absolute; border-radius:50%; filter:blur(60px); mix-blend-mode:multiply; opacity:.22; pointer-events:none; }
+  .orb-1{ width:520px;height:520px;left:-180px;top:220px;background:radial-gradient(circle,var(--fw-burgundy),transparent 65%); }
+  .orb-2{ width:600px;height:600px;right:-200px;top:640px;background:radial-gradient(circle,var(--fw-gold),transparent 65%); }
+  .orb-3{ width:480px;height:480px;left:60px;bottom:-100px;background:radial-gradient(circle,var(--fw-burgundy-light),transparent 65%);opacity:.12; }
+  .content-frame{ position:relative;width:100%;height:100%;padding:36px 44px;display:grid;grid-template-rows:150px 270px 620px 164px 340px 224px;gap:16px; }
+  .glass::after{ z-index:0;opacity:.4; }
+  .glass > :not(.gold-frame){ position:relative;z-index:1; }
+  .caps{ font-family:'Cormorant SC',serif;text-transform:uppercase;letter-spacing:.12em;font-weight:600; }
+  .script{ font-family:'Great Vibes',cursive;color:var(--fw-gold-deep);font-weight:400; }
+  .header-row{ padding:20px 28px 12px;display:grid;grid-template-columns:1fr 1fr;align-items:center; }
+  .wordmark{ font-size:35px;letter-spacing:.12em;white-space:nowrap; }
+  .wordmark span{ color:var(--fw-gold-deep); }
+  .brand-subline{ font-size:15px;margin-top:5px;letter-spacing:.2em; }
+  .collection-lockup{ text-align:right; }
+  .collection-badge{ display:inline-block;border:1px solid var(--fw-gold);border-radius:40px;padding:8px 23px;text-align:center;font-size:16px;line-height:1.35;color:var(--fw-burgundy); }
+  .collection-badge span{ display:block;font-size:13px; }
+  .collection-lockup .script{ font-size:29px;margin-top:6px; }
+  .divider-rule{ display:flex;align-items:center;gap:12px;color:var(--fw-gold-deep); }
+  .divider-rule:before,.divider-rule:after{ content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--fw-gold)); }
+  .divider-rule:after{ transform:rotate(180deg); }
+  .header-row .divider-rule{ grid-column:1/-1; }
+  .divider-rule svg{ width:20px;height:20px;flex-shrink:0; }
+  .headline-panel{ padding:16px 30px;text-align:center;display:flex;flex-direction:column;justify-content:center; }
+  h1{ font-size:62px;line-height:.98;font-weight:400; }
+  h1 em{ color:var(--fw-burgundy);font-weight:400; }
+  .headline-panel .caps{ font-size:18px;margin-top:18px; }
+  .intro{ font-size:26px;line-height:1.16;max-width:840px;margin:12px auto 0; }
+  .intro span{ color:var(--fw-burgundy);font-weight:600; }
+  .choice-panel{ padding:22px 28px; }
+  .choice-top{ height:204px;display:flex;align-items:center;justify-content:center; }
+  .choice-top .divider-rule{ width:100%;gap:28px; }
+  .price-seal{ width:200px;height:200px;flex-shrink:0;border:1.5px solid var(--fw-gold);border-radius:50%;background:var(--fw-cream);color:var(--fw-burgundy);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 5px rgba(247,236,216,.6),0 8px 22px rgba(122,33,48,.08); }
+  .price-seal .caps{ font-size:13px; }
+  .price-total{ font-size:68px;font-weight:700;line-height:.94;margin:3px 0; }
+  .price-inclusions{ font-size:14px;line-height:1.12;width:174px;margin-top:7px; }
+  .scent-grid{ display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;margin-top:12px; }
+  .scent-card{ text-align:center;min-width:0; }
+  .scent-art{ height:176px;border-radius:70px 70px 18px 18px;border:1px solid rgba(201,162,74,.38);display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 35%,#fff9e9 0%,transparent 65%),linear-gradient(135deg,#dfc18b,var(--fw-cream-deep),#cba260); }
+  .scent-art.honey{ background:radial-gradient(ellipse at 45% 30%,#fff4d0,transparent 65%),linear-gradient(135deg,#ceaa61,var(--fw-cream-deep),#d6b77f); }
+  .scent-art svg{ width:110px;height:110px;filter:drop-shadow(0 7px 8px rgba(136,93,33,.15)); }
+  .ribbon-label{ display:inline-block;min-width:260px;border-radius:40px;background:var(--fw-burgundy);color:var(--fw-cream);font-size:33px;line-height:1.2;padding:6px 24px;margin-top:12px;font-weight:600; }
+  .scent-notes{ font-size:14px;letter-spacing:.12em;margin-top:12px;color:var(--fw-burgundy);white-space:nowrap; }
+  .scent-description{ font-size:24px;font-style:italic;line-height:1.1;margin:8px auto 0;max-width:365px; }
+  .or-badge{ width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;background:linear-gradient(155deg,var(--fw-burgundy-light),var(--fw-burgundy));border:1.5px solid var(--fw-gold);box-shadow:0 12px 24px -8px rgba(122,33,48,.35),inset 0 1px 0 rgba(255,220,200,.35);color:var(--fw-cream);font-family:'Cormorant SC',serif;font-size:21px; }
+  .info-strip{ display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:22px 12px; }
+  .info-item{ text-align:center;padding:0 12px; }
+  .info-item + .info-item{ border-left:1px solid rgba(201,162,74,.6); }
+  .info-item svg{ width:27px;height:27px;margin:0 auto 7px;display:block; }
+  .info-item h3{ font-size:17px;color:var(--fw-burgundy);margin-bottom:7px; }
+  .info-item p{ font-family:'Jost',sans-serif;font-size:12.5px;font-style:italic;line-height:1.35;white-space:nowrap; }
+  .ritual-panel{ padding:24px 20px; }
+  .section-title{ font-size:20px;white-space:nowrap; }
+  .steps{ display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:30px; }
+  .step{ text-align:center;position:relative; }
+  .step:not(:last-child):after{ content:'›';position:absolute;right:-13px;top:20px;color:var(--fw-gold-deep);font-size:34px; }
+  .icon-frame{ position:relative;width:76px;height:76px;border:1px solid var(--fw-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:rgba(247,236,216,.6); }
+  .icon-frame > svg{ width:44px;height:44px; }
+  .step-num{ position:absolute;top:-7px;left:-6px;width:29px;height:29px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--fw-burgundy);border:1px solid var(--fw-gold);color:var(--fw-cream);font:500 16px 'Jost',sans-serif; }
+  .step h3{ font-size:22px;line-height:1.02;min-height:46px;font-weight:600;margin-bottom:9px; }
+  .step p{ font-family:'Jost',sans-serif;font-size:16px;line-height:1.28; }
+  .closing-panel{ padding:14px 18px 12px;display:flex;flex-direction:column; }
+  .gel-strip{ display:grid;grid-template-columns:1.1fr 1fr 92px;gap:16px;align-items:center;border:1px solid var(--fw-gold);padding:10px 17px; }
+  .gel-title{ display:flex;align-items:center;gap:8px;font-size:24px;color:var(--fw-burgundy); }
+  .gel-title svg{ width:25px;height:25px; }
+  .gel-intro p{ font-size:23px;margin-top:4px; }
+  .gel-pricing{ border-left:1px solid var(--fw-gold);padding-left:20px;font-size:14px;line-height:1.5;letter-spacing:.1em; }
+  .gel-pricing .season{ color:var(--fw-burgundy); }
+  .gel-pricing .offer{ font-size:20px;font-weight:600;letter-spacing:.08em; }
+  .old-price{ text-decoration:line-through; }
+  .save-badge{ width:80px;height:80px;border-radius:50%;background:var(--fw-burgundy);color:var(--fw-cream);display:flex;align-items:center;justify-content:center;text-align:center;font-size:21px;letter-spacing:.06em; }
+  .closing-panel .script{ font-size:31px;text-align:right;margin:6px 12px;line-height:1.2; }
+  .footer-bar{ border:1px solid var(--fw-gold);text-align:center;padding:8px 0;font-size:14px;letter-spacing:.13em; }
+  .botanical{ position:absolute;width:150px;height:260px;opacity:.16;color:var(--fw-burgundy); }
+  .botanical.tl{ left:-64px;top:-50px;transform:rotate(-25deg); }
+  .botanical.tr{ right:-66px;top:-40px;transform:scaleX(-1) rotate(-25deg);color:var(--fw-gold-deep); }
+  .botanical.bl{ left:-65px;bottom:-35px;transform:rotate(190deg);color:var(--fw-gold-deep); }
+  .botanical.br{ right:-65px;bottom:-35px;transform:rotate(160deg); }
   @media (prefers-reduced-motion: reduce){
     *{ animation: none !important; transition: none !important; }
   }
@@ -193,11 +166,10 @@
 <div id="root"></div>
 
 <script type="text/babel" data-presets="react">
+
 const { useEffect, useState, useRef, useMemo } = React;
 const m = window.Motion.motion;
-
 function App(){
-
   // staggered spring entry (same as slide 1)
   const springIn = (delay=0)=>({
     initial:{ opacity:0, y:40, scale:0.95 },
@@ -223,7 +195,7 @@ function App(){
   });
 
   // gold border draw (same as slide 1)
-  const GoldFrame = ({ r=28, delay=0.4, color="rgba(184,150,90,0.55)" })=> (
+  const GoldFrame = ({ r=28, delay=0.4, color="rgba(201,162,74,0.55)" })=> (
     <svg className="gold-frame" viewBox="0 0 100 100" preserveAspectRatio="none">
       <m.rect
         x="0.5" y="0.5" width="99" height="99" rx={r/2.4} ry={r/2.4}
@@ -236,480 +208,147 @@ function App(){
     </svg>
   );
 
+
   const steps = [
-    { n:1, title:'Salt Soak',         body:'Mineral detox soak to refresh.',     icon:<BowlSteamIcon/> },
-    { n:2, title:'Sugar Scrub',       body:'Gentle exfoliation for smooth skin.', icon:<ScrubIcon/> },
-    { n:3, title:'Cream Masque',      body:'Deep hydration and nourishment.',     icon:<JarIcon/> },
-    { n:4, title:'Massage Lotion',    body:'Nourishing massage for silky softness.', icon:<LotionIcon/> },
-    { n:5, title:'Hot Stone Massage', body:'Warm stones melt tension away.',      icon:<StonesIcon/> },
+    {title:'Warm Soak',body:'A warm, soothing soak to relax, soften and cleanse tired feet.',icon:<BowlSteamIcon/>},
+    {title:'Sugar Scrub',body:'Gently exfoliates dead skin cells for smooth, renewed feet.',icon:<ScrubIcon/>},
+    {title:'Cream Masque',body:'Deeply hydrates and nourishes dry, tired skin.',icon:<JarIcon/>},
+    {title:'Massage Lotion',body:'Nourishing lotion massage for silky softness and relaxation.',icon:<LotionIcon/>},
+    {title:'Hot Stone Massage',body:'Warm stones melt away stress and improve circulation.',icon:<StonesIcon/>},
+    {title:'Paraffin Treatment',body:'Locks in moisture and leaves skin incredibly soft.',icon:<ParaffinIcon/>}
   ];
-
-  return (
-    <>
-      {/* atmospheric stage */}
-      <div className="stage" aria-hidden="true">
-        <m.div className="orb orb-1"
-          animate={{ x:[0,30,-10,0], y:[0,-20,10,0] }}
-          transition={{ duration:18, repeat:Infinity, ease:'easeInOut' }} />
-        <m.div className="orb orb-2"
-          animate={{ x:[0,-25,15,0], y:[0,15,-12,0] }}
-          transition={{ duration:22, repeat:Infinity, ease:'easeInOut', delay:1.5 }} />
-        <m.div className="orb orb-3"
-          animate={{ x:[0,18,-22,0], y:[0,-14,8,0] }}
-          transition={{ duration:20, repeat:Infinity, ease:'easeInOut', delay:0.8 }} />
-        <m.div className="orb orb-4"
-          animate={{ x:[0,-18,22,0], y:[0,12,-18,0] }}
-          transition={{ duration:24, repeat:Infinity, ease:'easeInOut', delay:2.2 }} />
-        <m.div className="orb orb-pom"
-          animate={{ x:[0,22,-14,0], y:[0,-12,16,0] }}
-          transition={{ duration:21, repeat:Infinity, ease:'easeInOut', delay:1.1 }} />
-        <m.div className="orb orb-blossom"
-          animate={{ x:[0,-20,12,0], y:[0,14,-10,0] }}
-          transition={{ duration:23, repeat:Infinity, ease:'easeInOut', delay:1.8 }} />
-        <div className="grain"/>
-      </div>
-
-      {/* content frame */}
-      <div className="relative w-full h-full" style={{ padding:'52px 60px', display:'grid',
-        gridTemplateColumns:'repeat(6, 1fr)',
-        gridTemplateRows:'76px 224px 560px 232px 388px 88px',
-        gap:'22px'
-      }}>
-
-        {/* ─── Row A — brand strip ─── */}
-        <m.div {...springIn(0.05)} style={{ gridColumn:'1 / -1', gridRow:'1' }}
-          className="glass glass-strong flex items-center justify-between px-9">
-          <GoldFrame delay={0.5}/>
-          <div className="flex items-baseline gap-4">
-            <span className="display tabular" style={{ fontSize:'30px', fontWeight:800, letterSpacing:'-0.04em' }}>
-              DELUXE
-            </span>
-            <span className="eyebrow" style={{ fontSize:'14px', color:'var(--charcoal-soft)' }}>
-              Nail Spa
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="pin-dot-oxblood"/>
-            <span className="eyebrow" style={{ fontSize:'13px', color:'var(--oxblood-soft)' }}>
-              Summer Collection · Limited Time
-            </span>
-          </div>
-        </m.div>
-
-        {/* ─── Row B — Title block ─── */}
-        <m.div {...springIn(0.15)} style={{ gridColumn:'1 / -1', gridRow:'2', position:'relative' }}
-          className="glass glass-strong flex flex-col items-center justify-center px-10">
-          <GoldFrame delay={0.7}/>
-          <div className="eyebrow" style={{
-            fontSize:'12px', color:'var(--charcoal-muted)', marginBottom:'12px', textAlign:'center'
-          }}>
-            A Five-Step Spa Pedicure · Two Summer Scents
-          </div>
-          <h1 className="display" style={{
-            fontSize:'58px', fontWeight:700, lineHeight:1.0, letterSpacing:'-0.04em',
-            color:'var(--charcoal)', margin:0, textAlign:'center'
-          }}>
-            <em style={{ fontStyle:'italic', color:'var(--oxblood)', fontWeight:600 }}>Two</em>
-            {' '}Summer Scents.{' '}
-            <em style={{ fontStyle:'italic', color:'var(--oxblood)', fontWeight:600 }}>One</em>
-            {' '}Relaxing Pedicure.
-          </h1>
-          <div style={{
-            fontSize:'19px', fontWeight:400, color:'var(--charcoal-soft)',
-            marginTop:'14px', lineHeight:1.4, textAlign:'center', maxWidth:'860px'
-          }}>
-            Choose Pomegranate or Cherry Blossom for a summer spa treatment made to refresh, soften, and relax.
-          </div>
-        </m.div>
-
-        {/* ─── Row C — Dual scent choice ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'3', display:'grid',
-          gridTemplateColumns:'1fr 96px 1fr', gap:'22px', alignItems:'stretch' }}>
-
-          {/* Pomegranate card */}
-          <m.div {...springInLeft(0.30)}
-            className="glass scent-card-pom relative flex flex-col"
-            style={{ padding:'28px' }}>
-            <GoldFrame delay={0.95} color="rgba(168, 50, 58, 0.45)"/>
-            <m.div {...breathe(0.1)} style={{ display:'flex', flexDirection:'column', height:'100%' }}>
-              <m.div className="scent-img-wrap"
-                animate={{ scale:[1, 1.015, 1] }}
-                transition={{ duration:5, repeat:Infinity, ease:'easeInOut' }}
-                style={{ marginBottom:'18px' }}>
-                <img src="assets/pomegranate.png" alt="Pomegranate watercolor illustration"/>
-              </m.div>
-              <div style={{
-                display:'flex', alignItems:'center', justifyContent:'space-between',
-                marginBottom:'8px'
-              }}>
-                <div className="display" style={{
-                  fontSize:'40px', fontWeight:700, letterSpacing:'-0.035em',
-                  color:'var(--charcoal)', lineHeight:1
-                }}>
-                  <em style={{ fontStyle:'italic', color:'var(--oxblood)', fontWeight:600 }}>Pomegranate</em>
-                </div>
-                <span className="eyebrow tabular" style={{ fontSize:'11px', color:'var(--charcoal-muted)' }}>
-                  01
-                </span>
-              </div>
-              <div className="eyebrow" style={{
-                fontSize:'11px', color:'var(--oxblood-soft)', marginBottom:'10px',
-                letterSpacing:'0.20em'
-              }}>
-                Rich · Antioxidant · Bold Berry
-              </div>
-              <div style={{
-                fontSize:'16px', fontWeight:400, color:'var(--charcoal-soft)',
-                lineHeight:1.4
-              }}>
-                A ruby-deep scent with a warm, refreshing finish.
-              </div>
-            </m.div>
-          </m.div>
-
-          {/* OR badge */}
-          <div style={{ display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <m.div
-              initial={{ opacity:0, scale:0 }}
-              animate={{ opacity:1, scale:1 }}
-              transition={{ type:'spring', stiffness:280, damping:11, delay:0.5 }}
-              className="or-badge"
-              style={{
-                width:'88px', height:'88px', borderRadius:'50%',
-                display:'flex', alignItems:'center', justifyContent:'center',
-                position:'relative'
-              }}>
-              <m.span
-                animate={{ scale:[1, 1.05, 1] }}
-                transition={{ duration:3, repeat:Infinity, ease:'easeInOut' }}
-                style={{
-                  fontFamily:'Inter Tight', fontWeight:700, fontSize:'24px',
-                  letterSpacing:'0.05em', color:'#FBF3E8'
-                }}>
-                OR
-              </m.span>
-            </m.div>
-          </div>
-
-          {/* Cherry Blossom card */}
-          <m.div {...springInRight(0.35)}
-            className="glass scent-card-blossom relative flex flex-col"
-            style={{ padding:'28px' }}>
-            <GoldFrame delay={1.0} color="rgba(232, 180, 192, 0.55)"/>
-            <m.div {...breathe(0.35)} style={{ display:'flex', flexDirection:'column', height:'100%' }}>
-              <m.div className="scent-img-wrap"
-                animate={{ scale:[1, 1.015, 1] }}
-                transition={{ duration:5, repeat:Infinity, ease:'easeInOut', delay:0.8 }}
-                style={{ marginBottom:'18px' }}>
-                <img src="assets/cherry-blossom.png" alt="Cherry blossom watercolor illustration"/>
-              </m.div>
-              <div style={{
-                display:'flex', alignItems:'center', justifyContent:'space-between',
-                marginBottom:'8px'
-              }}>
-                <div className="display" style={{
-                  fontSize:'40px', fontWeight:700, letterSpacing:'-0.035em',
-                  color:'var(--charcoal)', lineHeight:1
-                }}>
-                  <em style={{ fontStyle:'italic', color:'#B85A6E', fontWeight:600 }}>Cherry Blossom</em>
-                </div>
-                <span className="eyebrow tabular" style={{ fontSize:'11px', color:'var(--charcoal-muted)' }}>
-                  02
-                </span>
-              </div>
-              <div className="eyebrow" style={{
-                fontSize:'11px', color:'#B85A6E', marginBottom:'10px',
-                letterSpacing:'0.20em'
-              }}>
-                Soft · Floral · Fresh
-              </div>
-              <div style={{
-                fontSize:'16px', fontWeight:400, color:'var(--charcoal-soft)',
-                lineHeight:1.4
-              }}>
-                A delicate floral scent with a light, clean summer feel.
-              </div>
-            </m.div>
-          </m.div>
+  return <>
+    <div className="stage" aria-hidden="true">
+      {[1,2,3].map((n)=><m.div key={n} className={'orb orb-'+n} animate={{x:[0,25,-15,0],y:[0,-18,12,0]}} transition={{duration:18+n*2,repeat:Infinity,ease:'easeInOut',delay:n*.4}}/>)}
+      {['tl','tr','bl','br'].map(c=><BotanicalCorner key={c} corner={c}/>)}
+    </div>
+    <div className="content-frame">
+      <m.div className="glass glass-strong header-row" {...springIn(.05)}>
+        <GoldFrame delay={.5}/><HeaderRow/><DividerRule/>
+      </m.div>
+      <m.div className="glass glass-strong headline-panel" {...springIn(.15)}>
+        <GoldFrame delay={.7}/>
+        <h1><em>Two</em> Cozy Scents.<br/><em>One</em> Nourishing Pedicure.</h1>
+        <p className="caps">A SIX-STEP SPA PEDICURE · TWO COZY SCENTS</p>
+        <p className="intro">Choose <span>Golden Vanilla</span> or <span>Honey Oat</span> for a warm spa ritual made to hydrate, soften, and comfort.</p>
+      </m.div>
+      <m.div className="glass glass-strong choice-panel" {...springIn(.25)}>
+        <GoldFrame delay={.85}/>
+        <div className="choice-top"><div className="divider-rule"><PriceSeal/></div></div>
+        <div className="scent-grid">
+          <m.div {...springInLeft(.35)}><m.div {...breathe(.1)}><ScentCard name="Golden Vanilla" notes="WARM · SWEET · LUXURIOUS" description="A rich vanilla experience with a touch of golden indulgence."/></m.div></m.div>
+          <m.div className="or-badge" initial={{opacity:0,scale:0}} animate={{opacity:1,scale:1}} transition={{type:'spring',stiffness:280,damping:11,delay:.5}}><m.span animate={{scale:[1,1.05,1]}} transition={{duration:3,repeat:Infinity,ease:'easeInOut'}}>OR</m.span></m.div>
+          <m.div {...springInRight(.4)}><m.div {...breathe(.35)}><ScentCard honey name="Honey Oat" notes="NOURISHING · GENTLE · COMFORTING" description="A warm honey-oat experience made to soften and comfort."/></m.div></m.div>
         </div>
-
-        {/* ─── Row D — Price + info pills ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'4', display:'grid',
-          gridTemplateColumns:'1fr 1.1fr 1fr', gap:'22px' }}>
-
-          {/* Left info chip */}
-          <m.div {...springIn(0.70)}
-            className="glass relative flex flex-col justify-center"
-            style={{ padding:'24px 26px' }}>
-            <GoldFrame delay={1.1} r={22}/>
-            <m.div {...breathe(0.5)}>
-              <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'10px' }}>
-                <CalendarIcon/>
-                <div className="eyebrow" style={{ fontSize:'12px', color:'var(--oxblood-soft)' }}>
-                  Limited Time Only
-                </div>
-              </div>
-              <div className="display" style={{
-                fontSize:'22px', fontWeight:700, letterSpacing:'-0.025em',
-                color:'var(--charcoal)', lineHeight:1.1, marginBottom:'6px'
-              }}>
-                Summer escape, ready when you are.
-              </div>
-              <div style={{
-                fontSize:'15px', fontWeight:400, color:'var(--charcoal-soft)',
-                lineHeight:1.35
-              }}>
-                Treat yourself to the ultimate summer pedicure.
-              </div>
-            </m.div>
-          </m.div>
-
-          {/* Center — Oxblood price pill */}
-          <m.div
-            initial={{ opacity:0, scale:0.4, y:30 }}
-            animate={{ opacity:1, scale:1, y:0 }}
-            transition={{ type:'spring', stiffness:200, damping:11, delay:0.65 }}
-            style={{ position:'relative' }}>
-            <m.div
-              className="price-pill-oxblood"
-              animate={{
-                boxShadow: [
-                  '0 28px 60px -16px rgba(80, 25, 30, 0.55), 0 10px 22px -8px rgba(80, 25, 30, 0.35), inset 0 1px 0 rgba(255,220,200,0.28), inset 0 -1px 0 rgba(0,0,0,0.25)',
-                  '0 28px 80px -12px rgba(80, 25, 30, 0.70), 0 14px 30px -8px rgba(80, 25, 30, 0.50), inset 0 1px 0 rgba(255,220,200,0.35), inset 0 -1px 0 rgba(0,0,0,0.25)',
-                  '0 28px 60px -16px rgba(80, 25, 30, 0.55), 0 10px 22px -8px rgba(80, 25, 30, 0.35), inset 0 1px 0 rgba(255,220,200,0.28), inset 0 -1px 0 rgba(0,0,0,0.25)'
-                ]
-              }}
-              transition={{ duration:3, repeat:Infinity, ease:'easeInOut' }}
-              style={{
-                width:'100%', height:'100%', borderRadius:'28px',
-                display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
-                position:'relative', padding:'18px 14px'
-              }}>
-              <div className="eyebrow" style={{
-                fontSize:'11px', color:'rgba(245, 220, 200, 0.78)',
-                letterSpacing:'0.30em', marginBottom:'2px'
-              }}>
-                From
-              </div>
-              <div className="display tabular" style={{
-                fontSize:'92px', fontWeight:700, letterSpacing:'-0.05em',
-                lineHeight:1, color:'#FBF3E8',
-                display:'flex', alignItems:'baseline'
-              }}>
-                <span style={{
-                  fontSize:'40px', fontWeight:600, color:'#D4B886',
-                  marginRight:'4px', transform:'translateY(-22px)', display:'inline-block'
-                }}>$</span>
-                49
-              </div>
-              <div className="eyebrow" style={{
-                fontSize:'10px', color:'rgba(245, 220, 200, 0.75)',
-                marginTop:'8px', letterSpacing:'0.18em', textAlign:'center',
-                maxWidth:'200px', lineHeight:1.35
-              }}>
-                Includes Hot Stone Massage
-              </div>
-            </m.div>
-          </m.div>
-
-          {/* Right info chip */}
-          <m.div {...springIn(0.75)}
-            className="glass relative flex flex-col justify-center"
-            style={{ padding:'24px 26px' }}>
-            <GoldFrame delay={1.15} r={22}/>
-            <m.div {...breathe(0.7)}>
-              <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'10px' }}>
-                <HeartIcon/>
-                <div className="eyebrow" style={{ fontSize:'12px', color:'var(--gold)' }}>
-                  Relax. Renew. Glow.
-                </div>
-              </div>
-              <div className="display" style={{
-                fontSize:'22px', fontWeight:700, letterSpacing:'-0.025em',
-                color:'var(--charcoal)', lineHeight:1.1, marginBottom:'6px'
-              }}>
-                Healthy skin. Light legs. Happy you.
-              </div>
-              <div style={{
-                fontSize:'15px', fontWeight:400, color:'var(--charcoal-soft)',
-                lineHeight:1.35
-              }}>
-                The treatment your summer was waiting for.
-              </div>
-              <div style={{
-                fontSize:'12px', fontWeight:400, color:'var(--charcoal-muted)',
-                marginTop:'10px', letterSpacing:'0.01em'
-              }}>
-                Gel polish &amp; add-ons available
-              </div>
-            </m.div>
-          </m.div>
-        </div>
-
-        {/* ─── Row E — Five-step ritual ─── */}
-        <m.div {...springIn(0.85)} style={{ gridColumn:'1 / -1', gridRow:'5', position:'relative' }}
-          className="glass glass-strong"
-        >
-          <GoldFrame delay={1.3}/>
-          <div style={{ padding:'32px 36px 28px', height:'100%', display:'flex', flexDirection:'column' }}>
-            <div className="eyebrow" style={{
-              fontSize:'12px', color:'var(--charcoal-muted)', textAlign:'center',
-              marginBottom:'22px'
-            }}>
-              The Five-Step Spa Pedicure Experience
-            </div>
-
-            <div style={{
-              display:'grid', gridTemplateColumns:'repeat(5, 1fr)',
-              gap:'8px', flex:1, alignItems:'stretch'
-            }}>
-              {steps.map((s, i)=>(
-                <React.Fragment key={s.n}>
-                  <m.div
-                    initial={{ opacity:0, y:18 }}
-                    animate={{ opacity:1, y:0 }}
-                    transition={{ delay:0.85 + i*0.08, duration:0.55, ease:'easeOut' }}
-                    style={{
-                      display:'flex', flexDirection:'column', alignItems:'center',
-                      textAlign:'center', padding:'10px 8px', position:'relative'
-                    }}>
-                    <m.span className="step-num"
-                      initial={{ scale:0, opacity:0 }}
-                      animate={{ scale:1, opacity:1 }}
-                      transition={{ delay:0.92 + i*0.08, type:'spring', stiffness:260, damping:14 }}>
-                      {s.n}
-                    </m.span>
-                    <div style={{
-                      width:'40px', height:'40px', marginTop:'14px', marginBottom:'10px',
-                      display:'flex', alignItems:'center', justifyContent:'center'
-                    }}>
-                      {s.icon}
-                    </div>
-                    <div className="display" style={{
-                      fontSize:'19px', fontWeight:700, letterSpacing:'-0.025em',
-                      color:'var(--charcoal)', lineHeight:1.05, marginBottom:'6px'
-                    }}>
-                      {s.title}
-                    </div>
-                    <div style={{
-                      fontSize:'13px', fontWeight:400, color:'var(--charcoal-soft)',
-                      lineHeight:1.35
-                    }}>
-                      {s.body}
-                    </div>
-                  </m.div>
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </m.div>
-
-        {/* ─── Row F — Footer pill ─── */}
-        <m.div {...springIn(1.30)} style={{ gridColumn:'1 / -1', gridRow:'6' }}
-          className="glass glass-strong flex flex-col items-center justify-center relative">
-          <GoldFrame delay={1.6}/>
-          <m.div {...breathe(1.2)} style={{ textAlign:'center' }}>
-            <div className="eyebrow" style={{
-              fontSize:'12px', color:'var(--charcoal-muted)',
-              letterSpacing:'0.22em', marginBottom:'4px'
-            }}>
-              A Small Treat. A Big Difference.
-            </div>
-            <div style={{
-              fontFamily:'Inter Tight', fontStyle:'italic', fontWeight:500,
-              fontSize:'22px', letterSpacing:'-0.02em', color:'var(--charcoal)',
-              lineHeight:1.1
-            }}>
-              Step in. Relax. Let your summer begin.
-            </div>
-          </m.div>
-        </m.div>
-
-      </div>
-    </>
-  );
+      </m.div>
+      <m.div className="glass info-strip" {...springIn(.65)}>
+        <GoldFrame delay={1}/>
+        <InfoItem kind="calendar" title="LIMITED TIME ONLY" body="Treat yourself to the ultimate fall/winter escape."/>
+        <InfoItem kind="leaf" title="RELAX. RENEW. GLOW." body="Healthy skin. Happy feet. You deserve it."/>
+        <InfoItem kind="gift" title="ALSO AVAILABLE" body="Gift Certificates for the Perfect Treat!"/>
+      </m.div>
+      <m.div className="glass glass-strong ritual-panel" {...springIn(.85)}>
+        <GoldFrame delay={1.3}/><DividerRule><h2 className="caps section-title">THE SIX-STEP SPA PEDICURE RITUAL</h2></DividerRule>
+        <div className="steps">{steps.map((s,i)=><m.div className="step" key={s.title} initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:.85+i*.08,duration:.55,ease:'easeOut'}}>
+          <div className="icon-frame"><m.span className="step-num" initial={{scale:0,opacity:0}} animate={{scale:1,opacity:1}} transition={{delay:.92+i*.08,type:'spring',stiffness:260,damping:14}}>{i+1}</m.span>{s.icon}</div><h3>{s.title}</h3><p>{s.body}</p>
+        </m.div>)}</div>
+      </m.div>
+      <m.div className="glass glass-strong closing-panel" {...springIn(1.15)}>
+        <GoldFrame delay={1.6}/><GelOffer/>
+        <p className="script">Self Care Looks Good on Yours ♡</p>
+        <FooterBar/>
+      </m.div>
+    </div>
+  </>;
 }
 
-/* ── icons ─────────────────────────────────────────── */
-function CalendarIcon(){
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="#722F37" strokeWidth="1.6" fill="rgba(114,47,55,0.10)"/>
-      <line x1="3.5" y1="9.5" x2="20.5" y2="9.5" stroke="#722F37" strokeWidth="1.6"/>
-      <line x1="8" y1="3" x2="8" y2="6.5" stroke="#722F37" strokeWidth="1.6" strokeLinecap="round"/>
-      <line x1="16" y1="3" x2="16" y2="6.5" stroke="#722F37" strokeWidth="1.6" strokeLinecap="round"/>
-      <circle cx="12" cy="14.5" r="1.6" fill="#722F37"/>
-    </svg>
-  );
+/* Self-contained editorial components for the carousel's visual system. */
+function HeaderRow(){return <>
+  <div><div className="caps wordmark" aria-label="DELUXE NAIL SPA">DELU<span>X</span>E NAIL SPA</div><div className="caps brand-subline">BEAUTY · CARE · RELAXATION</div></div>
+  <div className="collection-lockup"><div className="caps collection-badge">FALL/WINTER COLLECTION<span>LIMITED TIME ONLY</span></div><p className="script">Warm Moments Beautiful Feet ♡</p></div>
+</>;}
+function DividerRule({children}){return <div className="divider-rule"><LeafIcon/>{children}{children && <LeafIcon/>}</div>;}
+function PriceSeal(){return <div className="price-seal"><div className="caps">SPECIAL</div><div className="price-total">$59</div><div className="caps">INCLUDES</div><div className="price-inclusions">HOT STONE MASSAGE &amp;<br/>PARAFFIN TREATMENT</div></div>;}
+function ScentCard({name,notes,description,honey=false}){return <div className="scent-card"><div className={'scent-art'+(honey?' honey':'')} aria-hidden="true"><ScentIcon honey={honey}/></div><h2 className="ribbon-label">{name}</h2><p className="caps scent-notes">{notes}</p><p className="scent-description">{description}</p></div>;}
+function InfoItem({kind,title,body}){return <div className="info-item"><InfoIcon kind={kind}/><h3 className="caps">{title}</h3><p>{body}</p></div>;}
+function GelOffer(){return <div className="gel-strip">
+  <div className="gel-intro"><h2 className="caps gel-title"><MapleIcon/>+ MAKE IT GEL!</h2><p>Upgrade to gel polish and get $5 OFF!</p></div>
+  <div className="caps gel-pricing"><div>REGULAR GEL ADD-ON <span className="old-price">$15</span></div><div className="season">FALL/WINTER SPECIAL</div><div className="offer">GEL ADD-ON ONLY $10</div></div>
+  <div className="caps save-badge">SAVE $5</div>
+</div>;}
+function FooterBar(){return <div className="caps footer-bar">DELUXE NAIL SPA · SMOOTHER FEET · BRIGHTER DAYS · A MORE BEAUTIFUL YOU</div>;}
+function LeafIcon(){return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20Q2 3 21 3Q21 21 4 20ZM4 20L16 8" stroke="currentColor" strokeWidth="1.4" fill="rgba(201,162,74,.12)"/></svg>;}
+function MapleIcon(){return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L15 8L18 6L17 11L22 10L19 16L13 18L13 23H11V18L5 16L2 10L7 11L6 6L9 8Z" fill="var(--fw-gold-deep)"/></svg>;}
+function InfoIcon({kind}){
+  if(kind==='leaf')return <LeafIcon/>;
+  return <svg viewBox="0 0 24 24" fill="rgba(201,162,74,.12)" stroke="var(--fw-burgundy)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{kind==='calendar'?<><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10H20.5M8 3V7M16 3V7"/><circle cx="12" cy="15" r="1.5" fill="var(--fw-gold)"/></>:<><path d="M4 11H20V21H4ZM3 7H21V11H3ZM12 7V21"/><path d="M12 7C3 7 5 0 9 3ZM12 7C21 7 19 0 15 3Z"/></>}</svg>;
 }
-function HeartIcon(){
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <path d="M12 20 C 12 20, 3 14, 3 8.5 C 3 6, 5 4, 7.5 4 C 9.5 4, 11 5.2, 12 7 C 13 5.2, 14.5 4, 16.5 4 C 19 4, 21 6, 21 8.5 C 21 14, 12 20, 12 20 Z"
-        stroke="#B8965A" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(184,150,90,0.20)"/>
-    </svg>
-  );
-}
+function BotanicalCorner({corner}){return <svg className={'botanical '+corner} viewBox="0 0 150 260" fill="none"><path d="M70 250Q110 125 55 10" stroke="currentColor" strokeWidth="2"/>{[0,1,2,3,4].map(n=><g key={n} transform={'translate(0 '+n*43+')'}><path d="M77 48Q12 35 34 3Q75 14 77 48ZM80 58Q135 40 121 13Q87 23 80 58Z" fill="currentColor"/></g>)}</svg>;}
+function ScentIcon({honey}){return <svg viewBox="0 0 100 100" fill="none" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{honey?<>
+  <path d="M22 47H59L64 80Q41 89 18 80ZM24 41H57V47H24Z" fill="rgba(201,162,74,.4)"/><path d="M28 57Q41 52 54 57M28 72Q41 77 54 72M70 84L82 20"/>{[30,42,54,66].map(y=><path key={y} d={'M'+(82-(y-20)/6)+' '+y+'q-18 -15 -14 -20q17 2 14 20q18 -8 16 -17q-16 -2 -16 17'} fill="var(--fw-cream)"/>)}
+</>:<><path d="M22 86Q37 61 65 28M31 87Q47 58 69 34" stroke="var(--fw-burgundy)" strokeWidth="4"/>{[0,72,144,216,288].map(a=><ellipse key={a} cx="50" cy="30" rx="11" ry="22" transform={'rotate('+a+' 50 49)'} fill="var(--fw-cream)"/>)}<circle cx="50" cy="49" r="9" fill="var(--fw-gold)"/></>}</svg>;}
+function ParaffinIcon(){return <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 23H31L28 31H8Z" fill="rgba(201,162,74,.2)"/><path d="M12 23L11 15Q11 12 13 13L16 17V7Q18 4 19 7V14L21 8Q23 7 23 10L22 17L25 13Q28 12 27 15L24 23" fill="var(--fw-cream-deep)"/><path d="M9 27H27M7 7Q5 10 7 12M29 5Q27 8 29 10" stroke="var(--fw-gold-deep)"/></svg>;}
 function BowlSteamIcon(){
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M14 8 C 14 5, 16 5, 16 8 C 16 10, 14 10, 14 12" stroke="#B8965A" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <path d="M19 7 C 19 4, 21 4, 21 7 C 21 9, 19 9, 19 11" stroke="#B8965A" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <path d="M14 8 C 14 5, 16 5, 16 8 C 16 10, 14 10, 14 12" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <path d="M19 7 C 19 4, 21 4, 21 7 C 21 9, 19 9, 19 11" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
       <path d="M5 16 H 31 C 30 25, 25 29, 18 29 C 11 29, 6 25, 5 16 Z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(184,150,90,0.20)"/>
-      <ellipse cx="18" cy="16" rx="13" ry="2" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(184,150,90,0.30)"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
+      <ellipse cx="18" cy="16" rx="13" ry="2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
     </svg>
   );
 }
 function ScrubIcon(){
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M8 22 L 12 12 H 24 L 28 22 Z" stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(184,150,90,0.20)"/>
-      <line x1="8" y1="22" x2="28" y2="22" stroke="#1F1B16" strokeWidth="1.6"/>
-      <circle cx="14" cy="17" r="1.1" fill="#B8965A"/>
-      <circle cx="18" cy="15" r="1.1" fill="#B8965A"/>
-      <circle cx="22" cy="18" r="1.1" fill="#B8965A"/>
-      <circle cx="16" cy="20" r="0.9" fill="#B8965A"/>
-      <circle cx="21" cy="20" r="0.9" fill="#B8965A"/>
-      <path d="M11 26 H 25" stroke="#B8965A" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M8 22 L 12 12 H 24 L 28 22 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
+      <line x1="8" y1="22" x2="28" y2="22" stroke="var(--fw-charcoal)" strokeWidth="1.6"/>
+      <circle cx="14" cy="17" r="1.1" fill="var(--fw-gold-deep)"/>
+      <circle cx="18" cy="15" r="1.1" fill="var(--fw-gold-deep)"/>
+      <circle cx="22" cy="18" r="1.1" fill="var(--fw-gold-deep)"/>
+      <circle cx="16" cy="20" r="0.9" fill="var(--fw-gold-deep)"/>
+      <circle cx="21" cy="20" r="0.9" fill="var(--fw-gold-deep)"/>
+      <path d="M11 26 H 25" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   );
 }
 function JarIcon(){
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <rect x="10" y="8" width="16" height="4" rx="1.2" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(184,150,90,0.30)"/>
+      <rect x="10" y="8" width="16" height="4" rx="1.2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
       <path d="M11 12 H 25 V 27 C 25 28.5, 23.5 29, 22 29 H 14 C 12.5 29, 11 28.5, 11 27 Z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(184,150,90,0.18)"/>
-      <path d="M14 18 C 16 16, 20 16, 22 18" stroke="#B8965A" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M13 22 C 16 20, 20 20, 23 22" stroke="#B8965A" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
+      <path d="M14 18 C 16 16, 20 16, 22 18" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+      <path d="M13 22 C 16 20, 20 20, 23 22" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
 function LotionIcon(){
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M15 8 H 21 V 11 H 15 Z" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(184,150,90,0.30)"/>
-      <path d="M13 11 H 23 L 22 14 H 14 Z" stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(184,150,90,0.18)"/>
+      <path d="M15 8 H 21 V 11 H 15 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
+      <path d="M13 11 H 23 L 22 14 H 14 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
       <path d="M14 14 H 22 V 28 C 22 29, 21 29.5, 20 29.5 H 16 C 15 29.5, 14 29, 14 28 Z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(184,150,90,0.15)"/>
-      <path d="M21 8 V 5 H 24 V 7" stroke="#B8965A" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <line x1="16" y1="20" x2="20" y2="20" stroke="#B8965A" strokeWidth="1.4" strokeLinecap="round"/>
-      <line x1="16" y1="23" x2="20" y2="23" stroke="#B8965A" strokeWidth="1.4" strokeLinecap="round"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.15)"/>
+      <path d="M21 8 V 5 H 24 V 7" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <line x1="16" y1="20" x2="20" y2="20" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
+      <line x1="16" y1="23" x2="20" y2="23" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
     </svg>
   );
 }
 function StonesIcon(){
   return (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <ellipse cx="11" cy="22" rx="7" ry="3" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(184,150,90,0.30)"/>
-      <ellipse cx="22" cy="20" rx="8" ry="3.5" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(184,150,90,0.22)"/>
-      <ellipse cx="16" cy="16" rx="6" ry="2.5" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(184,150,90,0.16)"/>
-      <path d="M13 11 C 13 9, 15 9, 15 11" stroke="#B8965A" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M18 9 C 18 7, 20 7, 20 9" stroke="#B8965A" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+      <ellipse cx="11" cy="22" rx="7" ry="3" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
+      <ellipse cx="22" cy="20" rx="8" ry="3.5" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.22)"/>
+      <ellipse cx="16" cy="16" rx="6" ry="2.5" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.16)"/>
+      <path d="M13 11 C 13 9, 15 9, 15 11" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+      <path d="M18 9 C 18 7, 20 7, 20 9" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>

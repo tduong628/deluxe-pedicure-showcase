@@ -8,6 +8,7 @@
 <!-- fonts vendored locally -->
 
 <link href="../../vendor/fonts/fonts.css" rel="stylesheet">
+<link href="../../vendor/fonts-editorial/fonts-editorial.css" rel="stylesheet">
 
 <link href="../../vendor/mini-tw.css" rel="stylesheet">
 <script src="../../vendor/react.production.min.js"></script>
@@ -32,6 +33,16 @@
     --glass-fill:rgba(255, 251, 246, 0.42);
     --glass-stroke:rgba(255, 255, 255, 0.55);
     --glass-shadow: 0 24px 60px -20px rgba(60, 40, 20, 0.22), 0 6px 16px -8px rgba(60, 40, 20, 0.16);
+
+
+    --fw-cream:#F7ECD8;
+    --fw-cream-deep:#F3E3C9;
+    --fw-burgundy:#7A2130;
+    --fw-burgundy-light:#8C2A3A;
+    --fw-gold:#C9A24A;
+    --fw-gold-deep:#B8862E;
+    --fw-charcoal:#2B221A;
+    --fw-charcoal-muted:rgba(43,34,26,0.62);
   }
   html, body{
     width:1080px; height:1920px; margin:0; padding:0;
@@ -43,60 +54,6 @@
     text-rendering: optimizeLegibility;
   }
   #root{ width:1080px; height:1920px; position:relative; }
-  .display{ font-family:'Inter Tight', 'Inter', sans-serif; letter-spacing:-0.035em; }
-  .tabular{ font-variant-numeric: tabular-nums; }
-  .eyebrow{ font-family:'Inter', sans-serif; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; }
-
-  .stage{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 900px 700px at 18% 18%, rgba(232, 196, 180, 0.80), transparent 60%),
-      radial-gradient(ellipse 800px 600px at 88% 35%, rgba(245, 230, 216, 0.78), transparent 65%),
-      radial-gradient(ellipse 700px 700px at 30% 90%, rgba(201, 169, 97, 0.30), transparent 65%),
-      radial-gradient(ellipse 1100px 900px at 110% 110%, rgba(212, 184, 160, 0.7), transparent 70%),
-      linear-gradient(168deg, #F7EBDE 0%, #EFD7C4 45%, #E2C2AB 100%);
-  }
-
-  /* atmospheric drifting orbs */
-  .orb{
-    position:absolute; border-radius:50%;
-    filter: blur(60px);
-    mix-blend-mode: multiply;
-    opacity: 0.55;
-    pointer-events:none;
-  }
-  .orb-1{ width:520px; height:520px; left:-80px; top:120px; background: radial-gradient(circle, #E8C4B4 0%, transparent 65%); }
-  .orb-2{ width:600px; height:600px; right:-120px; top:480px; background: radial-gradient(circle, #F5E6D8 0%, transparent 65%); }
-  .orb-3{ width:480px; height:480px; left:60px; bottom:-40px; background: radial-gradient(circle, #C9A961 0%, transparent 60%); opacity:0.26; }
-  .orb-4{ width:420px; height:420px; right:80px; bottom:240px; background: radial-gradient(circle, #D4B886 0%, transparent 65%); }
-
-  /* pearlescent radiance orbs — luminous gold edition accent */
-  .pearl-orb{
-    position:absolute; border-radius:50%;
-    pointer-events:none; mix-blend-mode:screen;
-  }
-  .pearl-orb-a{
-    width:360px; height:360px; right:120px; top:60px;
-    background: radial-gradient(circle, rgba(255,252,244,0.55) 0%, rgba(244,236,221,0.20) 45%, transparent 70%);
-    filter: blur(20px); opacity:0.65;
-  }
-  .pearl-orb-b{
-    width:300px; height:300px; left:140px; top:980px;
-    background: radial-gradient(circle, rgba(255,250,238,0.50) 0%, rgba(201,169,97,0.14) 50%, transparent 72%);
-    filter: blur(24px); opacity:0.55;
-  }
-  .pearl-orb-c{
-    width:240px; height:240px; right:240px; bottom:120px;
-    background: radial-gradient(circle, rgba(255,253,247,0.48) 0%, transparent 68%);
-    filter: blur(18px); opacity:0.50;
-  }
-
-  /* grain overlay */
-  .grain{
-    position:absolute; inset:0; pointer-events:none; opacity:0.07; mix-blend-mode:overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
   .glass{
     position:relative;
     background: var(--glass-fill);
@@ -120,78 +77,106 @@
     border-radius:inherit;
   }
 
-  /* hairline rules for eyebrow headers */
-  .hair-rule{
-    height:1px; background: linear-gradient(90deg, transparent, rgba(184,150,90,0.55), transparent);
-    flex:1; max-width:220px;
-  }
 
-  .checkmark{
-    width:30px; height:30px; flex-shrink:0;
-    display:inline-flex; align-items:center; justify-content:center;
-    border-radius:50%;
-    background: linear-gradient(135deg, #E2CB95, #C9A961);
-    box-shadow: 0 4px 10px -2px rgba(201,169,97,0.50), inset 0 1px 0 rgba(255,255,255,0.55);
-  }
-  .pin-dot{
-    width:8px; height:8px; border-radius:50%; background:var(--champagne);
-    box-shadow: 0 0 0 4px rgba(201,169,97,0.20);
-  }
-
-  /* edition badge — thin gold-outlined pill */
-  .edition-pill{
-    background: linear-gradient(160deg, rgba(255,252,244,0.78) 0%, rgba(244,236,221,0.55) 100%);
-    border: 1px solid rgba(201,169,97,0.65);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 4px 12px -4px rgba(160,120,40,0.22);
-  }
-
-  /* pearl-cream price pill with champagne ring */
-  .price-pill{
-    background:
-      radial-gradient(ellipse 70% 60% at 50% 38%, rgba(255,253,247,0.95) 0%, rgba(244,236,221,0.82) 55%, rgba(238,226,205,0.72) 100%);
-    border: 2px solid rgba(201,169,97,0.70);
-    box-shadow:
-      0 28px 60px -20px rgba(150, 110, 40, 0.34),
-      0 8px 18px -6px rgba(150, 110, 40, 0.20),
-      inset 0 1px 0 rgba(255,255,255,0.85),
-      inset 0 -2px 6px rgba(201,169,97,0.22),
-      0 0 0 6px rgba(255,252,244,0.30);
-    -webkit-backdrop-filter: blur(28px) saturate(150%);
-    backdrop-filter: blur(28px) saturate(150%);
-  }
-
-  .hero-vignette{
-    position:absolute; inset:0; pointer-events:none;
-    background:
-      linear-gradient(180deg, rgba(31,27,22,0) 48%, rgba(31,27,22,0.70) 100%),
-      linear-gradient(90deg, rgba(31,27,22,0.20) 0%, rgba(31,27,22,0) 38%);
-  }
-  .hero-eyebrow-pill{
-    background: rgba(245, 238, 224, 0.88);
-    border: 1px solid rgba(201, 169, 97, 0.50);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-  .hero-fallback{
-    width:100%; height:100%;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 35%, rgba(255,253,247,0.95), transparent 65%),
-      radial-gradient(ellipse 70% 60% at 50% 80%, rgba(201,169,97,0.30), transparent 70%),
-      linear-gradient(165deg, #F3E9D8 0%, #E7D2BB 55%, #D9BFA4 100%);
-    display:flex; align-items:center; justify-content:center;
-  }
-
-  .item-icon{
-    width:40px; height:40px; flex-shrink:0; border-radius:12px;
-    display:flex; align-items:center; justify-content:center;
-    background: linear-gradient(135deg, rgba(255,250,240,0.95), rgba(244,236,221,0.80));
-    border:1px solid rgba(201,169,97,0.38);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,0.6), 0 3px 8px -2px rgba(150,110,40,0.16);
-  }
-
+  *{ box-sizing:border-box; }
+  body{ cursor:none; color:var(--fw-charcoal); font-family:'Cormorant Garamond',serif; }
+  h1,h2,h3,p{ margin:0; }
+  .stage{ position:absolute; inset:0; background:radial-gradient(ellipse at 0% 38%,rgba(122,33,48,.14),transparent 52%),radial-gradient(ellipse at 95% 82%,rgba(201,162,74,.24),transparent 55%),linear-gradient(165deg,var(--fw-cream),var(--fw-cream-deep)); }
+  .orb{ position:absolute; border-radius:50%; filter:blur(60px); mix-blend-mode:multiply; opacity:.22; pointer-events:none; }
+  .orb-1{ width:520px;height:520px;left:-180px;top:220px;background:radial-gradient(circle,var(--fw-burgundy),transparent 65%); }
+  .orb-2{ width:600px;height:600px;right:-200px;top:640px;background:radial-gradient(circle,var(--fw-gold),transparent 65%); }
+  .orb-3{ width:480px;height:480px;left:60px;bottom:-100px;background:radial-gradient(circle,var(--fw-burgundy-light),transparent 65%);opacity:.12; }
+  .content-frame{ position:relative;width:100%;height:100%;padding:36px 44px;display:grid;grid-template-rows:150px 270px 620px 164px 340px 224px;gap:16px; }
+  .glass::after{ z-index:0;opacity:.4; }
+  .glass > :not(.gold-frame){ position:relative;z-index:1; }
+  .caps{ font-family:'Cormorant SC',serif;text-transform:uppercase;letter-spacing:.12em;font-weight:600; }
+  .script{ font-family:'Great Vibes',cursive;color:var(--fw-gold-deep);font-weight:400; }
+  .header-row{ padding:20px 28px 12px;display:grid;grid-template-columns:1fr 1fr;align-items:center; }
+  .wordmark{ font-size:35px;letter-spacing:.12em;white-space:nowrap; }
+  .wordmark span{ color:var(--fw-gold-deep); }
+  .brand-subline{ font-size:15px;margin-top:5px;letter-spacing:.2em; }
+  .collection-lockup{ text-align:right; }
+  .collection-badge{ display:inline-block;border:1px solid var(--fw-gold);border-radius:40px;padding:8px 23px;text-align:center;font-size:16px;line-height:1.35;color:var(--fw-burgundy); }
+  .collection-badge span{ display:block;font-size:13px; }
+  .collection-lockup .script{ font-size:29px;margin-top:6px; }
+  .divider-rule{ display:flex;align-items:center;gap:12px;color:var(--fw-gold-deep); }
+  .divider-rule:before,.divider-rule:after{ content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--fw-gold)); }
+  .divider-rule:after{ transform:rotate(180deg); }
+  .header-row .divider-rule{ grid-column:1/-1; }
+  .divider-rule svg{ width:20px;height:20px;flex-shrink:0; }
+  .headline-panel{ padding:16px 30px;text-align:center;display:flex;flex-direction:column;justify-content:center; }
+  h1{ font-size:62px;line-height:.98;font-weight:400; }
+  h1 em{ color:var(--fw-burgundy);font-weight:400; }
+  .headline-panel .caps{ font-size:18px;margin-top:18px; }
+  .intro{ font-size:26px;line-height:1.16;max-width:840px;margin:12px auto 0; }
+  .intro span{ color:var(--fw-burgundy);font-weight:600; }
+  .choice-panel{ padding:22px 28px; }
+  .price-seal{ width:200px;height:200px;flex-shrink:0;border:1.5px solid var(--fw-gold);border-radius:50%;background:var(--fw-cream);color:var(--fw-burgundy);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 5px rgba(247,236,216,.6),0 8px 22px rgba(122,33,48,.08); }
+  .price-seal .caps{ font-size:13px; }
+  .price-total{ font-size:68px;font-weight:700;line-height:.94;margin:3px 0; }
+  .price-inclusions{ font-size:14px;line-height:1.12;width:174px;margin-top:7px; }
+  .ribbon-label{ display:inline-block;min-width:260px;border-radius:40px;background:var(--fw-burgundy);color:var(--fw-cream);font-size:33px;line-height:1.2;padding:6px 24px;margin-top:12px;font-weight:600; }
+  .info-strip{ display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:22px 12px; }
+  .info-item{ text-align:center;padding:0 12px; }
+  .info-item + .info-item{ border-left:1px solid rgba(201,162,74,.6); }
+  .info-item svg{ width:27px;height:27px;margin:0 auto 7px;display:block; }
+  .info-item h3{ font-size:17px;color:var(--fw-burgundy);margin-bottom:7px; }
+  .info-item p{ font-family:'Jost',sans-serif;font-size:12.5px;font-style:italic;line-height:1.35;white-space:nowrap; }
+  .ritual-panel{ padding:24px 20px; }
+  .section-title{ font-size:20px;white-space:nowrap; }
+  .steps{ display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:30px; }
+  .step{ text-align:center;position:relative; }
+  .step:not(:last-child):after{ content:'›';position:absolute;right:-13px;top:20px;color:var(--fw-gold-deep);font-size:34px; }
+  .icon-frame{ position:relative;width:76px;height:76px;border:1px solid var(--fw-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:rgba(247,236,216,.6); }
+  .icon-frame > svg{ width:44px;height:44px; }
+  .step-num{ position:absolute;top:-7px;left:-6px;width:29px;height:29px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--fw-burgundy);border:1px solid var(--fw-gold);color:var(--fw-cream);font:500 16px 'Jost',sans-serif; }
+  .step h3{ font-size:22px;line-height:1.02;min-height:46px;font-weight:600;margin-bottom:9px; }
+  .step p{ font-family:'Jost',sans-serif;font-size:16px;line-height:1.28; }
+  .closing-panel{ padding:14px 18px 12px;display:flex;flex-direction:column; }
+  .closing-panel .script{ font-size:31px;text-align:right;margin:6px 12px;line-height:1.2; }
+  .footer-bar{ border:1px solid var(--fw-gold);text-align:center;padding:8px 0;font-size:14px;letter-spacing:.13em; }
+  .botanical{ position:absolute;width:150px;height:260px;opacity:.16;color:var(--fw-burgundy); }
+  .botanical.tl{ left:-64px;top:-50px;transform:rotate(-25deg); }
+  .botanical.tr{ right:-66px;top:-40px;transform:scaleX(-1) rotate(-25deg);color:var(--fw-gold-deep); }
+  .botanical.bl{ left:-65px;bottom:-35px;transform:rotate(190deg);color:var(--fw-gold-deep); }
+  .botanical.br{ right:-65px;bottom:-35px;transform:rotate(160deg); }
   @media (prefers-reduced-motion: reduce){
     *{ animation: none !important; transition: none !important; }
   }
+
+  .glass.glass-strong{ background:rgba(247,236,216,.92);border-color:rgba(201,162,74,.4);backdrop-filter:none;-webkit-backdrop-filter:none; }
+  .content-frame{ grid-template-rows:150px 290px 360px 310px 548px 110px; }
+  .headline-panel{ padding:26px 40px; }
+  h1{ font-size:76px;line-height:1; }
+  .intro{ font-family:'Jost',sans-serif;font-size:23px;line-height:1.4;max-width:820px;margin-top:22px; }
+  .collection-badge{ max-width:390px;font-size:16px;padding:12px 20px; }
+  .collection-lockup .brand-subline{ color:var(--fw-charcoal-muted); }
+  .experience-panel{ padding:24px 36px;display:grid;grid-template-columns:1fr 240px;align-items:center;gap:32px; }
+  .experience-art{ display:flex;align-items:center;justify-content:center;gap:24px; }
+  .pearl-art{ width:180px;height:180px;flex-shrink:0;border:1px solid var(--fw-gold);border-radius:90px 90px 24px 24px;background:radial-gradient(ellipse at 50% 35%,#fff9e9,transparent 65%),linear-gradient(135deg,#dfc18b,var(--fw-cream-deep),#cba260);display:flex;align-items:center;justify-content:center; }
+  .pearl-art svg{ width:146px;height:146px; }
+  .promise{ font-size:40px;line-height:1.08;font-weight:400; }
+  .promise em{ color:var(--fw-burgundy); }
+  .ribbon-label{ min-width:0;font-size:18px;padding:8px 18px;margin:18px 0 0; }
+  .secondary{ font-family:'Jost',sans-serif;font-size:19px;line-height:1.4;margin-top:16px; }
+  .price-seal{ width:234px;height:234px; }
+  .price-total{ font-size:49px;white-space:nowrap;margin:12px 0; }
+  .price-inclusions{ font-family:'Jost',sans-serif;font-size:17px;line-height:1.35;width:190px; }
+  .benefits-panel{ padding:24px 22px; }
+  .info-strip{ grid-template-columns:repeat(4,1fr);padding:26px 0 0;align-items:start; }
+  .info-item{ padding:0 16px; }
+  .info-item svg{ width:34px;height:34px;margin-bottom:14px;color:var(--fw-burgundy); }
+  .info-item h3{ font-size:21px;line-height:1.15;min-height:50px;letter-spacing:.06em; }
+  .info-item p{ font-size:17px;line-height:1.4;white-space:normal;font-style:normal; }
+  .ritual-panel{ padding:26px 28px; }
+  .steps{ grid-template-columns:repeat(4,1fr);column-gap:24px;row-gap:26px;margin-top:28px; }
+  .step:nth-child(4):after{ content:none; }
+  .step h3{ font-size:25px;line-height:1.05;min-height:53px;margin-bottom:7px; }
+  .step p{ font-size:16px;line-height:1.3;max-width:190px;margin:auto; }
+  .icon-frame{ width:66px;height:66px;margin-bottom:12px; }
+  .icon-frame > svg{ width:37px;height:37px; }
+  .closing-panel{ justify-content:center;padding:22px 28px; }
+  .footer-bar{ font-size:23px;padding:12px 0; }
 </style>
 </head>
 <body>
@@ -200,24 +185,33 @@
 <script type="text/babel" data-presets="react">
 const { useEffect, useState, useRef, useMemo } = React;
 const m = window.Motion.motion;
-
 function App(){
-
-  // staggered spring entry
+  // staggered spring entry (same as slide 1)
   const springIn = (delay=0)=>({
     initial:{ opacity:0, y:40, scale:0.95 },
     animate:{ opacity:1, y:0, scale:1 },
     transition:{ type:'spring', stiffness:100, damping:15, delay }
   });
 
-  // continuous breathing per card
+  const springInLeft = (delay=0)=>({
+    initial:{ opacity:0, x:-50, scale:0.95 },
+    animate:{ opacity:1, x:0, scale:1 },
+    transition:{ type:'spring', stiffness:100, damping:15, delay }
+  });
+
+  const springInRight = (delay=0)=>({
+    initial:{ opacity:0, x:50, scale:0.95 },
+    animate:{ opacity:1, x:0, scale:1 },
+    transition:{ type:'spring', stiffness:100, damping:15, delay }
+  });
+
   const breathe = (phase=0)=>({
     animate:{ y: [0, -2, 0, 2, 0] },
     transition:{ duration:4, repeat:Infinity, ease:'easeInOut', delay: phase }
   });
 
-  // gold border draw
-  const GoldFrame = ({ r=28, delay=0.4, color="rgba(184,150,90,0.55)" })=> (
+  // gold border draw (same as slide 1)
+  const GoldFrame = ({ r=28, delay=0.4, color="rgba(201,162,74,0.55)" })=> (
     <svg className="gold-frame" viewBox="0 0 100 100" preserveAspectRatio="none">
       <m.rect
         x="0.5" y="0.5" width="99" height="99" rx={r/2.4} ry={r/2.4}
@@ -230,22 +224,6 @@ function App(){
     </svg>
   );
 
-  // Hairline-drawing eyebrow header (rules grow outward from center text)
-  const EyebrowHeader = ({ children, color="var(--charcoal-muted)", delay=0 })=>(
-    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:'18px', position:'relative' }}>
-      <m.div className="hair-rule"
-        initial={{ scaleX:0, opacity:0 }} animate={{ scaleX:1, opacity:1 }}
-        transition={{ duration:0.9, delay, ease:'easeOut' }}
-        style={{ transformOrigin:'right center' }}/>
-      <span className="eyebrow" style={{ fontSize:'14px', color, letterSpacing:'0.26em', whiteSpace:'nowrap' }}>
-        {children}
-      </span>
-      <m.div className="hair-rule"
-        initial={{ scaleX:0, opacity:0 }} animate={{ scaleX:1, opacity:1 }}
-        transition={{ duration:0.9, delay, ease:'easeOut' }}
-        style={{ transformOrigin:'left center' }}/>
-    </div>
-  );
 
   const benefits = [
     { icon: <DropletIcon/>, title:'Deep Hydration',         body:'Pearl minerals drench dry skin with lasting moisture.' },
@@ -254,340 +232,89 @@ function App(){
     { icon: <SteamIcon/>,   title:'Relaxing Steam Therapy',  body:'Warm steam soothes, opens pores, deeply relaxes.' },
   ];
 
-  const included = [
-    { icon:<PearlIcon/>,     name:'Pearl Mineral Soak' },
-    { icon:<ScrubIcon/>,     name:'Sugar Scrub' },
-    { icon:<ExfoliateIcon/>, name:'Micro-Exfoliation Scrub' },
-    { icon:<MaskIcon/>,      name:'Nourishing Foot Mask' },
-    { icon:<LotionIcon/>,    name:'Moisturizing Lotion' },
-    { icon:<WaxIcon/>,       name:'Paraffin Wax' },
-    { icon:<SteamIcon sm/>,  name:'Steam Therapy' },
-    { icon:<MassageIcon/>,   name:'10-Minute Massage' },
+  const steps = [
+    {title:'Pearl Mineral Soak',body:'A pearl mineral soak.',icon:<PearlIcon/>},
+    {title:'Sugar Scrub',body:'A sugar exfoliation.',icon:<ScrubIcon/>},
+    {title:'Micro-Exfoliation Scrub',body:'A fine exfoliating scrub.',icon:<ExfoliateIcon/>},
+    {title:'Nourishing Foot Mask',body:'A nourishing mask for feet.',icon:<MaskIcon/>},
+    {title:'Moisturizing Lotion',body:'A moisturizing lotion application.',icon:<LotionIcon/>},
+    {title:'Paraffin Wax',body:'A paraffin wax treatment.',icon:<WaxIcon/>},
+    {title:'Steam Therapy',body:'A warm steam treatment.',icon:<SteamIcon/>},
+    {title:'10-Minute Massage',body:'Ten minutes of massage.',icon:<MassageIcon/>},
   ];
-
-  return (
-    <>
-      {/* atmospheric stage */}
-      <div className="stage" aria-hidden="true">
-        <m.div className="orb orb-1"
-          animate={{ x:[0,30,-10,0], y:[0,-20,10,0] }}
-          transition={{ duration:18, repeat:Infinity, ease:'easeInOut' }} />
-        <m.div className="orb orb-2"
-          animate={{ x:[0,-25,15,0], y:[0,15,-12,0] }}
-          transition={{ duration:22, repeat:Infinity, ease:'easeInOut', delay:1.5 }} />
-        <m.div className="orb orb-3"
-          animate={{ x:[0,18,-22,0], y:[0,-14,8,0] }}
-          transition={{ duration:20, repeat:Infinity, ease:'easeInOut', delay:0.8 }} />
-        <m.div className="orb orb-4"
-          animate={{ x:[0,-18,22,0], y:[0,12,-18,0] }}
-          transition={{ duration:24, repeat:Infinity, ease:'easeInOut', delay:2.2 }} />
-
-        {/* pearlescent radiance — luminous gold edition */}
-        <m.div className="pearl-orb pearl-orb-a"
-          animate={{ opacity:[0.45,0.72,0.45], scale:[1,1.06,1] }}
-          transition={{ duration:9, repeat:Infinity, ease:'easeInOut' }} />
-        <m.div className="pearl-orb pearl-orb-b"
-          animate={{ opacity:[0.40,0.62,0.40], scale:[1,1.05,1] }}
-          transition={{ duration:11, repeat:Infinity, ease:'easeInOut', delay:1.4 }} />
-        <m.div className="pearl-orb pearl-orb-c"
-          animate={{ opacity:[0.36,0.58,0.36], scale:[1,1.07,1] }}
-          transition={{ duration:10, repeat:Infinity, ease:'easeInOut', delay:2.6 }} />
-
-        <div className="grain"/>
-      </div>
-
-      {/* content frame — dense 9-row grid (slide-4 cadence) */}
-      <div className="relative w-full h-full" style={{ padding:'40px 60px', display:'grid',
-        gridTemplateColumns:'repeat(6, 1fr)',
-        gridTemplateRows:'72px 576px 178px 46px 270px 46px 286px 62px',
-        gap:'17px'
-      }}>
-
-        {/* ─── Row A — brand strip + edition badge ─── */}
-        <m.div {...springIn(0.05)} style={{ gridColumn:'1 / -1', gridRow:'1' }}
-          className="glass glass-strong flex items-center justify-between px-9">
-          <GoldFrame delay={0.5} color="rgba(201,169,97,0.55)"/>
-          <div className="flex items-baseline gap-4">
-            <span className="display tabular" style={{ fontSize:'30px', fontWeight:800, letterSpacing:'-0.04em' }}>
-              DELUXE
-            </span>
-            <span className="eyebrow" style={{ fontSize:'14px', color:'var(--charcoal-soft)' }}>
-              Nail Spa
-            </span>
-            <span style={{ width:'5px', height:'5px', borderRadius:'50%',
-              background:'rgba(201,169,97,0.55)', margin:'0 4px', alignSelf:'center' }}/>
-            <span className="eyebrow" style={{ fontSize:'12px', color:'var(--charcoal-muted)' }}>
-              Cary, NC
-            </span>
-          </div>
-          <div className="edition-pill" style={{
-            padding:'9px 20px', borderRadius:'999px',
-            display:'inline-flex', alignItems:'center', gap:'10px' }}>
-            <span className="pin-dot"/>
-            <span className="eyebrow" style={{ fontSize:'12.5px', color:'var(--champagne)', letterSpacing:'0.20em' }}>
-              The Luminous Radiance Edition
-            </span>
-          </div>
-        </m.div>
-
-        {/* ─── Row B — hero card ─── */}
-        <m.div {...springIn(0.15)} style={{ gridColumn:'1 / -1', gridRow:'2' }}
-          className="glass relative overflow-hidden">
-          <m.div style={{ width:'100%', height:'100%' }}
-            initial={{ scale:0.92 }}
-            animate={{ scale:[1, 1.015, 1] }}
-            transition={{ scale:{ duration:5, repeat:Infinity, ease:'easeInOut' } }}>
-            <img src="assets/pearl-steam-hero.png" alt="Pearl-infused steam pedicure with pearls and warm steam on cream marble"
-              style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center 30%', display:'block' }}
-              onError={(e)=>{ e.currentTarget.style.display='none'; e.currentTarget.parentElement.insertAdjacentHTML('beforeend', '<div class=&quot;hero-fallback&quot;><svg width=&quot;180&quot; height=&quot;180&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><circle cx=&quot;12&quot; cy=&quot;13&quot; r=&quot;6&quot; fill=&quot;%23F4ECDD&quot; stroke=&quot;%23C9A961&quot; stroke-width=&quot;0.7&quot;/><circle cx=&quot;9.6&quot; cy=&quot;11&quot; r=&quot;1.6&quot; fill=&quot;%23ffffff&quot;/><path d=&quot;M9 4 q1 -2 0 -3 M12 3.5 q1.2 -2 0 -3.4 M15 4 q1 -2 0 -3&quot; stroke=&quot;%23C9A961&quot; stroke-width=&quot;0.6&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot; opacity=&quot;0.7&quot;/></svg></div>'); }}/>
-          </m.div>
-          <div className="hero-vignette"/>
-
-          {/* eyebrow pill top-left */}
-          <m.div className="hero-eyebrow-pill absolute"
-            style={{ top:'26px', left:'26px', padding:'10px 18px', borderRadius:'999px',
-              display:'inline-flex', alignItems:'center', gap:'10px' }}
-            initial={{ opacity:0, y:-10 }} animate={{ opacity:1, y:0 }}
-            transition={{ delay:0.9, duration:0.6 }}>
-            <span style={{ width:'8px', height:'8px', background:'var(--champagne)', borderRadius:'50%' }}/>
-            <span className="eyebrow" style={{ fontSize:'12px', color:'var(--charcoal)', letterSpacing:'0.20em' }}>
-              Deluxe Pedicure · Pearl &amp; Steam
-            </span>
-          </m.div>
-
-          {/* title block bottom-left */}
-          <div className="absolute" style={{ left:'42px', right:'48px', bottom:'40px' }}>
-            <m.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }}
-              transition={{ delay:1.0, duration:0.7, ease:'easeOut' }}>
-              <div style={{ display:'flex', alignItems:'center', gap:'12px', marginBottom:'14px' }}>
-                <span style={{ width:'7px', height:'7px', borderRadius:'50%',
-                  background:'rgba(255,250,238,0.85)', boxShadow:'0 0 8px rgba(255,250,238,0.7)' }}/>
-                <span style={{ width:'5px', height:'5px', borderRadius:'50%', background:'rgba(201,169,97,0.85)' }}/>
-                <span className="eyebrow" style={{ fontSize:'13px', color:'rgba(245,238,224,0.88)', letterSpacing:'0.22em' }}>
-                  Luminous Radiance · Pearl-Infused
-                </span>
-              </div>
-              <h1 className="display" style={{
-                fontSize:'80px', fontWeight:800, lineHeight:0.95, letterSpacing:'-0.05em',
-                color:'#FBF3E8', margin:0,
-                textShadow:'0 2px 14px rgba(40,28,14,0.45)'
-              }}>
-                The<br/>
-                <span style={{ color:'#D9BE82' }}>Pearl &amp; Steam</span><br/>
-                Experience
-              </h1>
-              <div style={{
-                fontStyle:'italic', fontWeight:400, fontSize:'21px',
-                color:'rgba(248,240,226,0.90)', marginTop:'16px', lineHeight:1.4,
-                maxWidth:'620px', textShadow:'0 2px 10px rgba(40,28,14,0.40)'
-              }}>
-                A warm pearl-infused pedicure that softens dry skin,
-                restores moisture, and leaves your feet glowing.
-              </div>
-            </m.div>
-          </div>
-          <GoldFrame delay={0.7} color="rgba(201,169,97,0.55)"/>
-        </m.div>
-
-        {/* ─── Row C — tagline (cols 1–4) + price pill (cols 5–6) ─── */}
-        <m.div {...springIn(0.30)} style={{ gridColumn:'1 / span 4', gridRow:'3' }}
-          className="glass flex items-center px-9">
-          <GoldFrame delay={0.9} color="rgba(201,169,97,0.5)"/>
-          <m.div {...breathe(0.2)}>
-            <div className="display" style={{
-              fontSize:'38px', fontWeight:700, lineHeight:1.04, letterSpacing:'-0.035em',
-              color:'var(--charcoal)'
-            }}>
-              Hydrate. Soften. <span style={{ color:'var(--champagne)' }}>Glow.</span>
-            </div>
-            <div style={{
-              fontStyle:'italic', fontWeight:400, fontSize:'19px',
-              color:'var(--charcoal-soft)', marginTop:'10px', letterSpacing:'-0.005em'
-            }}>
-              Pearl minerals · warm steam therapy
-            </div>
-            <div style={{
-              fontSize:'13px', fontWeight:400, color:'var(--charcoal-soft)',
-              marginTop:'10px', letterSpacing:'0.01em'
-            }}>
-              Gel polish &amp; add-ons available
-            </div>
-          </m.div>
-        </m.div>
-
-        <m.div style={{ gridColumn:'5 / span 2', gridRow:'3', position:'relative' }}
-          initial={{ opacity:0, scale:0.5 }} animate={{ opacity:1, scale:1 }}
-          transition={{ type:'spring', stiffness:220, damping:12, delay:0.45 }}>
-          <m.div className="price-pill" style={{
-              width:'100%', height:'100%', borderRadius:'28px',
-              display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
-              position:'relative'
-            }}
-            animate={{
-              boxShadow:[
-                '0 28px 60px -20px rgba(150,110,40,0.34), 0 8px 18px -6px rgba(150,110,40,0.20), inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -2px 6px rgba(201,169,97,0.22), 0 0 0 6px rgba(255,252,244,0.30)',
-                '0 28px 60px -20px rgba(150,110,40,0.34), 0 8px 18px -6px rgba(150,110,40,0.20), inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -2px 6px rgba(201,169,97,0.22), 0 0 0 11px rgba(255,250,235,0.50)',
-                '0 28px 60px -20px rgba(150,110,40,0.34), 0 8px 18px -6px rgba(150,110,40,0.20), inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -2px 6px rgba(201,169,97,0.22), 0 0 0 6px rgba(255,252,244,0.30)'
-              ]
-            }}
-            transition={{ duration:3, repeat:Infinity, ease:'easeInOut' }}>
-            <div className="eyebrow" style={{ fontSize:'15px', color:'var(--champagne)',
-              letterSpacing:'0.32em', marginBottom:'2px' }}>
-              From
-            </div>
-            <div className="display tabular" style={{
-              fontSize:'92px', fontWeight:800, letterSpacing:'-0.05em',
-              lineHeight:1, color:'var(--champagne)',
-              display:'flex', alignItems:'baseline',
-              textShadow:'0 2px 6px rgba(150,110,40,0.18)'
-            }}>
-              <span style={{ fontSize:'42px', fontWeight:700, marginRight:'4px',
-                transform:'translateY(-22px)', display:'inline-block' }}>$</span>
-              65
-            </div>
-          </m.div>
-        </m.div>
-
-        {/* ─── Row D — "WHY YOU'LL LOVE IT" header ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'4', display:'flex', alignItems:'center', justifyContent:'center' }}>
-          <EyebrowHeader color="var(--gold)" delay={0.6}>
-            Why You'll Love It
-          </EyebrowHeader>
-        </div>
-
-        {/* ─── Row E — 4 benefit cards (2×2) ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'5',
-          display:'grid', gridTemplateColumns:'1fr 1fr', gridTemplateRows:'1fr 1fr', gap:'17px' }}>
-          {benefits.map((b,i)=>(
-            <m.div key={i} {...springIn(0.70 + i*0.08)}
-              className="glass px-7 py-5 flex flex-col justify-center relative">
-              <m.div {...breathe(i*0.3)}>
-                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-                  <div style={{ width:'50px', height:'50px', borderRadius:'15px',
-                    background:'linear-gradient(135deg, rgba(255,250,240,0.95), rgba(244,236,221,0.85))',
-                    border:'1px solid rgba(201,169,97,0.38)',
-                    display:'flex', alignItems:'center', justifyContent:'center',
-                    boxShadow:'inset 0 1px 0 rgba(255,255,255,0.6), 0 4px 10px -2px rgba(150,110,40,0.18)' }}>
-                    {b.icon}
-                  </div>
-                  <span className="eyebrow tabular" style={{ fontSize:'11px', color:'var(--charcoal-muted)' }}>
-                    0{i+1}
-                  </span>
-                </div>
-                <div className="display" style={{
-                  fontSize:'27px', fontWeight:700, letterSpacing:'-0.032em',
-                  marginTop:'15px', color:'var(--charcoal)', lineHeight:1.05
-                }}>
-                  {b.title}
-                </div>
-                <div style={{
-                  fontSize:'16px', fontWeight:400, color:'var(--charcoal-soft)',
-                  marginTop:'7px', lineHeight:1.35
-                }}>
-                  {b.body}
-                </div>
-              </m.div>
-              <GoldFrame delay={0.95 + i*0.08} r={22} color="rgba(201,169,97,0.5)"/>
-            </m.div>
-          ))}
-        </div>
-
-        {/* ─── Row F — "WHAT'S INCLUDED" header ─── */}
-        <div style={{ gridColumn:'1 / -1', gridRow:'6', display:'flex', alignItems:'center', justifyContent:'center' }}>
-          <EyebrowHeader color="var(--gold)" delay={1.05}>
-            What's Included
-          </EyebrowHeader>
-        </div>
-
-        {/* ─── Row G — Included card (wide, 4×2 grid) ─── */}
-        <m.div {...springIn(1.15)} style={{ gridColumn:'1 / -1', gridRow:'7', position:'relative' }}
-          className="glass glass-strong px-9 py-7 flex flex-col justify-center">
-          <GoldFrame delay={1.5} color="rgba(201,169,97,0.5)"/>
-          <div style={{
-            display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gridTemplateRows:'1fr 1fr',
-            columnGap:'26px', rowGap:'24px'
-          }}>
-            {included.map((it,i)=>(
-              <m.div key={i}
-                initial={{ opacity:0, x:-12 }} animate={{ opacity:1, x:0 }}
-                transition={{ delay:1.2 + i*0.05, duration:0.45, ease:'easeOut' }}
-                style={{ display:'flex', alignItems:'center', gap:'14px' }}>
-                <m.span className="item-icon"
-                  initial={{ scale:0, opacity:0 }} animate={{ scale:1, opacity:1 }}
-                  transition={{ delay:1.24 + i*0.05, type:'spring', stiffness:260, damping:14 }}>
-                  {it.icon}
-                </m.span>
-                <span style={{
-                  fontFamily:'Inter Tight', fontWeight:600, fontSize:'19px',
-                  letterSpacing:'-0.018em', color:'var(--charcoal)', lineHeight:1.15
-                }}>
-                  {it.name}
-                </span>
-              </m.div>
-            ))}
-          </div>
-        </m.div>
-
-        {/* ─── Row H — footer pill ─── */}
-        <m.div {...springIn(1.70)} style={{ gridColumn:'1 / -1', gridRow:'8' }}
-          className="glass glass-strong flex items-center justify-center relative">
-          <GoldFrame delay={2.0} color="rgba(201,169,97,0.5)"/>
-          <m.div {...breathe(1.5)} style={{ display:'flex', alignItems:'center', gap:'16px' }}>
-            <span style={{
-              fontStyle:'italic', fontWeight:400, fontSize:'21px',
-              color:'var(--charcoal-soft)'
-            }}>
-              The radiant glow you deserve
-            </span>
-            <span style={{ width:'5px', height:'5px', borderRadius:'50%', background:'rgba(201,169,97,0.6)' }}/>
-            <span style={{
-              fontFamily:'Inter Tight', fontWeight:700, fontSize:'24px',
-              letterSpacing:'-0.025em', color:'var(--charcoal)',
-              display:'inline-flex', alignItems:'center', gap:'14px'
-            }}>
-              Ask the front desk
-              <m.span
-                animate={{ x:[0,6,0] }} transition={{ duration:1.6, repeat:Infinity, ease:'easeInOut' }}
-                style={{ display:'inline-flex' }}>
-                <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
-                  <path d="M5 14 H22 M16 8 L22 14 L16 20" stroke="#C9A961" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </m.span>
-            </span>
-          </m.div>
-        </m.div>
-
-      </div>
-    </>
-  );
+  return <>
+    <div className="stage" aria-hidden="true">
+      {[1,2,3].map((n)=><m.div key={n} className={'orb orb-'+n} animate={{x:[0,25,-15,0],y:[0,-18,12,0]}} transition={{duration:18+n*2,repeat:Infinity,ease:'easeInOut',delay:n*.4}}/>)}
+      {['tl','tr','bl','br'].map(c=><BotanicalCorner key={c} corner={c}/>)}
+    </div>
+    <div className="content-frame">
+      <m.div className="glass glass-strong header-row" {...springIn(.05)}>
+        <GoldFrame delay={.5}/><HeaderRow/><DividerRule/>
+      </m.div>
+      <m.div className="glass glass-strong headline-panel" {...springIn(.15)}>
+        <GoldFrame delay={.7}/>
+        <h1>The <em>Pearl</em> &amp; Steam Experience</h1>
+        <p className="intro">A warm pearl-infused pedicure that softens dry skin, restores moisture, and leaves your feet glowing.</p>
+      </m.div>
+      <m.div className="glass glass-strong experience-panel" {...springIn(.25)}>
+        <GoldFrame delay={.85}/>
+        <m.div {...springInLeft(.35)}><m.div {...breathe(.1)}>
+          <div className="experience-art"><div className="pearl-art" aria-hidden="true"><PearlSteamArt/></div>
+          <div><h2 className="promise">Hydrate. Soften. <em>Glow.</em></h2><p className="secondary">Pearl minerals · warm steam therapy</p><p className="caps ribbon-label">Pearl &amp; Steam</p></div></div>
+        </m.div></m.div>
+        <m.div {...springInRight(.4)}><PriceSeal/></m.div>
+      </m.div>
+      <m.div className="glass glass-strong benefits-panel" {...springIn(.65)}>
+        <GoldFrame delay={1}/><DividerRule><h2 className="caps section-title">Why You'll Love It</h2></DividerRule>
+        <div className="info-strip">{benefits.map(b=><InfoItem key={b.title} {...b}/>)}</div>
+      </m.div>
+      <m.div className="glass glass-strong ritual-panel" {...springIn(.85)}>
+        <GoldFrame delay={1.3}/><DividerRule><h2 className="caps section-title">The Eight-Step Pearl &amp; Steam Ritual</h2></DividerRule>
+        <div className="steps">{steps.map((s,i)=><m.div className="step" key={s.title} initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:.85+i*.08,duration:.55,ease:'easeOut'}}>
+          <div className="icon-frame"><m.span className="step-num" initial={{scale:0,opacity:0}} animate={{scale:1,opacity:1}} transition={{delay:.92+i*.08,type:'spring',stiffness:260,damping:14}}>{i+1}</m.span>{s.icon}</div><h3>{s.title}</h3><p>{s.body}</p>
+        </m.div>)}</div>
+      </m.div>
+      <m.div className="glass glass-strong closing-panel" {...springIn(1.15)}>
+        <GoldFrame delay={1.6}/><FooterBar/>
+      </m.div>
+    </div>
+  </>;
 }
-
-/* ── benefit icons ─────────────────────────────────────── */
+function HeaderRow(){return <>
+  <div><div className="caps wordmark" aria-label="DELUXE NAIL SPA">DELU<span>X</span>E NAIL SPA</div><div className="caps brand-subline">BEAUTY · CARE · RELAXATION</div></div>
+  <div className="collection-lockup"><div className="caps collection-badge">The Luminous Radiance Edition</div><p className="caps brand-subline">Cary, NC</p></div>
+</>;}
+function PriceSeal(){return <div className="price-seal"><div className="caps">Deluxe Pedicure</div><div className="price-total">From $65</div><p className="price-inclusions">Gel polish &amp; add-ons available</p></div>;}
+function InfoItem({icon,title,body}){return <div className="info-item">{icon}<h3 className="caps">{title}</h3><p>{body}</p></div>;}
+function FooterBar(){return <div className="caps footer-bar">The radiant glow you deserve</div>;}
+function PearlSteamArt(){return <svg viewBox="0 0 160 160" fill="none" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round">
+  <path d="M57 55C43 40 70 34 57 17M80 49C66 34 93 28 80 11M103 55C89 40 116 34 103 17"/>
+  <path d="M22 98H138Q129 140 80 140Q31 140 22 98Z" fill="var(--fw-cream-deep)" stroke="var(--fw-burgundy)"/>
+  <ellipse cx="80" cy="98" rx="58" ry="12" fill="var(--fw-cream)"/>
+  <circle cx="60" cy="90" r="18" fill="var(--fw-cream-deep)"/><circle cx="100" cy="91" r="16" fill="var(--fw-cream-deep)"/>
+  <circle cx="80" cy="78" r="23" fill="var(--fw-cream)"/><path d="M68 76Q68 66 79 65" stroke="white" strokeWidth="4"/>
+  <path d="M39 119Q80 142 121 119"/>
+</svg>;}
+function DividerRule({children}){return <div className="divider-rule"><LeafIcon/>{children}{children && <LeafIcon/>}</div>;}
+function LeafIcon(){return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20Q2 3 21 3Q21 21 4 20ZM4 20L16 8" stroke="currentColor" strokeWidth="1.4" fill="rgba(201,162,74,.12)"/></svg>;}
+function BotanicalCorner({corner}){return <svg className={'botanical '+corner} viewBox="0 0 150 260" fill="none"><path d="M70 250Q110 125 55 10" stroke="currentColor" strokeWidth="2"/>{[0,1,2,3,4].map(n=><g key={n} transform={'translate(0 '+n*43+')'}><path d="M77 48Q12 35 34 3Q75 14 77 48ZM80 58Q135 40 121 13Q87 23 80 58Z" fill="currentColor"/></g>)}</svg>;}
 function DropletIcon(){
   return (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
       <path d="M12 3 C 12 3, 5 11, 5 16 a7 7 0 0 0 14 0 C 19 11, 12 3, 12 3 z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,169,97,0.20)"/>
-      <path d="M9 15 a3 3 0 0 0 3 3" stroke="#C9A961" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
+      <path d="M9 15 a3 3 0 0 0 3 3" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
-function LeafIcon(){
-  return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-      <path d="M5 19 C 5 11, 11 5, 19 5 C 19 13, 13 19, 5 19 Z"
-        stroke="#1F1B16" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,169,97,0.20)"/>
-      <path d="M5 19 C 9 15, 13 11, 17 7" stroke="#C9A961" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-    </svg>
-  );
-}
+
 function SparkleIcon(){
   return (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
       <path d="M12 2 L13.6 9 L20.5 10.5 L13.6 12 L12 19 L10.4 12 L3.5 10.5 L10.4 9 Z"
-        stroke="#1F1B16" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(201,169,97,0.22)"/>
-      <circle cx="19.5" cy="4.5" r="1.4" fill="#C9A961"/>
-      <circle cx="4.5" cy="18.5" r="1" fill="#C9A961"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(201,162,74,0.22)"/>
+      <circle cx="19.5" cy="4.5" r="1.4" fill="var(--fw-gold-deep)"/>
+      <circle cx="4.5" cy="18.5" r="1" fill="var(--fw-gold-deep)"/>
     </svg>
   );
 }
@@ -595,10 +322,10 @@ function SteamIcon({ sm }){
   const s = sm ? 20 : 26;
   return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
-      <path d="M5 21 h14" stroke="#1F1B16" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M6 21 C 6 16, 18 16, 18 21" stroke="#1F1B16" strokeWidth="1.6" fill="rgba(201,169,97,0.18)"/>
-      <path d="M9 12 q 1.6 -2 0 -4 q -1.6 -2 0 -4" stroke="#C9A961" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <path d="M14.5 12 q 1.6 -2 0 -4 q -1.6 -2 0 -4" stroke="#C9A961" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <path d="M5 21 h14" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M6 21 C 6 16, 18 16, 18 21" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.18)"/>
+      <path d="M9 12 q 1.6 -2 0 -4 q -1.6 -2 0 -4" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+      <path d="M14.5 12 q 1.6 -2 0 -4 q -1.6 -2 0 -4" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
@@ -607,7 +334,7 @@ function SteamIcon({ sm }){
 function PearlIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="7" fill="rgba(244,236,221,0.9)" stroke="#1F1B16" strokeWidth="1.4"/>
+      <circle cx="12" cy="12" r="7" fill="rgba(244,236,221,0.9)" stroke="var(--fw-charcoal)" strokeWidth="1.4"/>
       <circle cx="9.5" cy="9.5" r="2" fill="#ffffff"/>
     </svg>
   );
@@ -615,19 +342,19 @@ function PearlIcon(){
 function ScrubIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <circle cx="7" cy="9" r="2" stroke="#1F1B16" strokeWidth="1.3" fill="rgba(201,169,97,0.25)"/>
-      <circle cx="14" cy="7" r="1.6" stroke="#1F1B16" strokeWidth="1.3" fill="rgba(201,169,97,0.25)"/>
-      <circle cx="17" cy="13" r="2" stroke="#1F1B16" strokeWidth="1.3" fill="rgba(201,169,97,0.25)"/>
-      <circle cx="10" cy="15" r="1.7" stroke="#1F1B16" strokeWidth="1.3" fill="rgba(201,169,97,0.25)"/>
-      <circle cx="15.5" cy="18" r="1.4" stroke="#1F1B16" strokeWidth="1.3" fill="rgba(201,169,97,0.25)"/>
+      <circle cx="7" cy="9" r="2" stroke="var(--fw-charcoal)" strokeWidth="1.3" fill="rgba(201,162,74,0.25)"/>
+      <circle cx="14" cy="7" r="1.6" stroke="var(--fw-charcoal)" strokeWidth="1.3" fill="rgba(201,162,74,0.25)"/>
+      <circle cx="17" cy="13" r="2" stroke="var(--fw-charcoal)" strokeWidth="1.3" fill="rgba(201,162,74,0.25)"/>
+      <circle cx="10" cy="15" r="1.7" stroke="var(--fw-charcoal)" strokeWidth="1.3" fill="rgba(201,162,74,0.25)"/>
+      <circle cx="15.5" cy="18" r="1.4" stroke="var(--fw-charcoal)" strokeWidth="1.3" fill="rgba(201,162,74,0.25)"/>
     </svg>
   );
 }
 function ExfoliateIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <path d="M4 18 L18 4 a2.5 2.5 0 0 1 3.5 3.5 L7.5 21.5" stroke="#1F1B16" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(201,169,97,0.18)"/>
-      <path d="M4 18 L7.5 21.5 L4.5 22.5 Z" fill="#C9A961" stroke="#1F1B16" strokeWidth="1.2" strokeLinejoin="round"/>
+      <path d="M4 18 L18 4 a2.5 2.5 0 0 1 3.5 3.5 L7.5 21.5" stroke="var(--fw-charcoal)" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
+      <path d="M4 18 L7.5 21.5 L4.5 22.5 Z" fill="var(--fw-gold-deep)" stroke="var(--fw-charcoal)" strokeWidth="1.2" strokeLinejoin="round"/>
     </svg>
   );
 }
@@ -635,17 +362,17 @@ function MaskIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path d="M12 4 C 6 4, 4 8, 4 13 C 4 18, 8 21, 12 21 C 16 21, 20 18, 20 13 C 20 8, 18 4, 12 4 Z"
-        stroke="#1F1B16" strokeWidth="1.4" fill="rgba(201,169,97,0.18)"/>
-      <path d="M8 11 q 4 3 8 0" stroke="#C9A961" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.4" fill="rgba(201,162,74,0.18)"/>
+      <path d="M8 11 q 4 3 8 0" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
 function LotionIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <rect x="8" y="9" width="8" height="12" rx="2" stroke="#1F1B16" strokeWidth="1.4" fill="rgba(201,169,97,0.18)"/>
-      <path d="M10 9 V6 h4 v3" stroke="#1F1B16" strokeWidth="1.4" strokeLinejoin="round"/>
-      <path d="M11 3 h3 v2" stroke="#C9A961" strokeWidth="1.4" strokeLinecap="round"/>
+      <rect x="8" y="9" width="8" height="12" rx="2" stroke="var(--fw-charcoal)" strokeWidth="1.4" fill="rgba(201,162,74,0.18)"/>
+      <path d="M10 9 V6 h4 v3" stroke="var(--fw-charcoal)" strokeWidth="1.4" strokeLinejoin="round"/>
+      <path d="M11 3 h3 v2" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
     </svg>
   );
 }
@@ -653,8 +380,8 @@ function WaxIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path d="M5 13 C 5 9, 8 6, 12 6 C 16 6, 19 9, 19 13 v5 a2 2 0 0 1 -2 2 H7 a2 2 0 0 1 -2 -2 Z"
-        stroke="#1F1B16" strokeWidth="1.4" fill="rgba(201,169,97,0.18)"/>
-      <path d="M8 13 q 4 3 8 0" stroke="#C9A961" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.4" fill="rgba(201,162,74,0.18)"/>
+      <path d="M8 13 q 4 3 8 0" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
     </svg>
   );
 }
@@ -662,10 +389,10 @@ function MassageIcon(){
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path d="M8 4 C 6.5 6, 6 9, 7 12.5 C 7.8 15.5, 7 19, 9.5 20.5 C 12 21, 13 18, 13 14 C 13 9.5, 11 4, 8 4 Z"
-        stroke="#1F1B16" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(201,169,97,0.18)"/>
-      <circle cx="15" cy="6" r="1" fill="#C9A961"/>
-      <circle cx="17" cy="9" r="0.9" fill="#C9A961"/>
-      <circle cx="17.5" cy="12" r="0.8" fill="#C9A961"/>
+        stroke="var(--fw-charcoal)" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
+      <circle cx="15" cy="6" r="1" fill="var(--fw-gold-deep)"/>
+      <circle cx="17" cy="9" r="0.9" fill="var(--fw-gold-deep)"/>
+      <circle cx="17.5" cy="12" r="0.8" fill="var(--fw-gold-deep)"/>
     </svg>
   );
 }
