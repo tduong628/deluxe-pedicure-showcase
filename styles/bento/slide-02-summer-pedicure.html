@@ -117,7 +117,7 @@
   .price-inclusions{ font-size:14px;line-height:1.12;width:174px;margin-top:7px; }
   .scent-grid{ display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;margin-top:12px; }
   .scent-card{ text-align:center;min-width:0; }
-  .scent-art{ height:176px;border-radius:70px 70px 18px 18px;border:1px solid rgba(201,162,74,.38);display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 35%,#fff9e9 0%,transparent 65%),linear-gradient(135deg,#dfc18b,var(--fw-cream-deep),#cba260); }
+  .scent-art{ height:176px;border-radius:70px 70px 18px 18px;border:1px solid rgba(201,162,74,.38);display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#fff9e9 0%,transparent 65%),linear-gradient(135deg,#dfc18b,var(--fw-cream-deep),#cba260); }
   .scent-art.honey{ background:radial-gradient(ellipse at 45% 30%,#fff4d0,transparent 65%),linear-gradient(135deg,#ceaa61,var(--fw-cream-deep),#d6b77f); }
   .scent-art svg{ width:110px;height:110px;filter:drop-shadow(0 7px 8px rgba(136,93,33,.15)); }
   .ribbon-label{ display:inline-block;min-width:260px;border-radius:40px;background:var(--fw-burgundy);color:var(--fw-cream);font-size:33px;line-height:1.2;padding:6px 24px;margin-top:12px;font-weight:600; }
@@ -136,7 +136,7 @@
   .step{ text-align:center;position:relative; }
   .step:not(:last-child):after{ content:'›';position:absolute;right:-13px;top:20px;color:var(--fw-gold-deep);font-size:34px; }
   .icon-frame{ position:relative;width:76px;height:76px;border:1px solid var(--fw-gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;background:rgba(247,236,216,.6); }
-  .icon-frame > svg{ width:44px;height:44px; }
+  .icon-frame > svg, .icon-frame > img{ width:44px;height:44px; }
   .step-num{ position:absolute;top:-7px;left:-6px;width:29px;height:29px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--fw-burgundy);border:1px solid var(--fw-gold);color:var(--fw-cream);font:500 16px 'Jost',sans-serif; }
   .step h3{ font-size:22px;line-height:1.02;min-height:46px;font-weight:600;margin-bottom:9px; }
   .step p{ font-family:'Jost',sans-serif;font-size:16px;line-height:1.28; }
@@ -210,12 +210,12 @@ function App(){
 
 
   const steps = [
-    {title:'Warm Soak',body:'A warm, soothing soak to relax, soften and cleanse tired feet.',icon:<BowlSteamIcon/>},
-    {title:'Sugar Scrub',body:'Gently exfoliates dead skin cells for smooth, renewed feet.',icon:<ScrubIcon/>},
-    {title:'Cream Masque',body:'Deeply hydrates and nourishes dry, tired skin.',icon:<JarIcon/>},
-    {title:'Massage Lotion',body:'Nourishing lotion massage for silky softness and relaxation.',icon:<LotionIcon/>},
-    {title:'Hot Stone Massage',body:'Warm stones melt away stress and improve circulation.',icon:<StonesIcon/>},
-    {title:'Paraffin Treatment',body:'Locks in moisture and leaves skin incredibly soft.',icon:<ParaffinIcon/>}
+    {title:'Warm Soak',body:'A warm, soothing soak to relax, soften and cleanse tired feet.',icon:<IconImg src="icon-warm-soak.png" alt="Warm soak"/>},
+    {title:'Sugar Scrub',body:'Gently exfoliates dead skin cells for smooth, renewed feet.',icon:<IconImg src="icon-sugar-scrub.png" alt="Sugar scrub"/>},
+    {title:'Cream Masque',body:'Deeply hydrates and nourishes dry, tired skin.',icon:<IconImg src="icon-cream-mask.png" alt="Cream masque"/>},
+    {title:'Massage Lotion',body:'Nourishing lotion massage for silky softness and relaxation.',icon:<IconImg src="icon-lotion-massage.png" alt="Massage lotion"/>},
+    {title:'Hot Stone Massage',body:'Warm stones melt away stress and improve circulation.',icon:<IconImg src="icon-hot-stone.png" alt="Hot stone massage"/>},
+    {title:'Paraffin Treatment',body:'Locks in moisture and leaves skin incredibly soft.',icon:<IconImg src="icon-paraffin-wax.png" alt="Paraffin treatment"/>}
   ];
   return <>
     <div className="stage" aria-hidden="true">
@@ -236,9 +236,9 @@ function App(){
         <GoldFrame delay={.85}/>
         <div className="choice-top"><div className="divider-rule"><PriceSeal/></div></div>
         <div className="scent-grid">
-          <m.div {...springInLeft(.35)}><m.div {...breathe(.1)}><ScentCard name="Golden Vanilla" notes="WARM · SWEET · LUXURIOUS" description="A rich vanilla experience with a touch of golden indulgence."/></m.div></m.div>
+          <m.div {...springInLeft(.35)}><m.div {...breathe(.1)}><ScentCard photo="golden-vanilla-hero.png" photoAlt="Lit candle with vanilla orchid and vanilla bean pods" name="Golden Vanilla" notes="WARM · SWEET · LUXURIOUS" description="A rich vanilla experience with a touch of golden indulgence."/></m.div></m.div>
           <m.div className="or-badge" initial={{opacity:0,scale:0}} animate={{opacity:1,scale:1}} transition={{type:'spring',stiffness:280,damping:11,delay:.5}}><m.span animate={{scale:[1,1.05,1]}} transition={{duration:3,repeat:Infinity,ease:'easeInOut'}}>OR</m.span></m.div>
-          <m.div {...springInRight(.4)}><m.div {...breathe(.35)}><ScentCard honey name="Honey Oat" notes="NOURISHING · GENTLE · COMFORTING" description="A warm honey-oat experience made to soften and comfort."/></m.div></m.div>
+          <m.div {...springInRight(.4)}><m.div {...breathe(.35)}><ScentCard honey photo="honey-oat-hero.png" photoAlt="Jar of honey with a wooden dipper and a bowl of oats" name="Honey Oat" notes="NOURISHING · GENTLE · COMFORTING" description="A warm honey-oat experience made to soften and comfort."/></m.div></m.div>
         </div>
       </m.div>
       <m.div className="glass info-strip" {...springIn(.65)}>
@@ -269,7 +269,7 @@ function HeaderRow(){return <>
 </>;}
 function DividerRule({children}){return <div className="divider-rule"><LeafIcon/>{children}{children && <LeafIcon/>}</div>;}
 function PriceSeal(){return <div className="price-seal"><div className="caps">SPECIAL</div><div className="price-total">$59</div><div className="caps">INCLUDES</div><div className="price-inclusions">HOT STONE MASSAGE &amp;<br/>PARAFFIN TREATMENT</div></div>;}
-function ScentCard({name,notes,description,honey=false}){return <div className="scent-card"><div className={'scent-art'+(honey?' honey':'')} aria-hidden="true"><ScentIcon honey={honey}/></div><h2 className="ribbon-label">{name}</h2><p className="caps scent-notes">{notes}</p><p className="scent-description">{description}</p></div>;}
+function ScentCard({name,notes,description,photo,photoAlt,honey=false}){return <div className="scent-card"><div className={'scent-art'+(honey?' honey':'')}><img src={'assets/'+photo} alt={photoAlt} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:honey?'center 35%':'center 42%',display:'block'}}/></div><h2 className="ribbon-label">{name}</h2><p className="caps scent-notes">{notes}</p><p className="scent-description">{description}</p></div>;}
 function InfoItem({kind,title,body}){return <div className="info-item"><InfoIcon kind={kind}/><h3 className="caps">{title}</h3><p>{body}</p></div>;}
 function GelOffer(){return <div className="gel-strip">
   <div className="gel-intro"><h2 className="caps gel-title"><MapleIcon/>+ MAKE IT GEL!</h2><p>Upgrade to gel polish and get $5 OFF!</p></div>
@@ -284,70 +284,7 @@ function InfoIcon({kind}){
   return <svg viewBox="0 0 24 24" fill="rgba(201,162,74,.12)" stroke="var(--fw-burgundy)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{kind==='calendar'?<><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10H20.5M8 3V7M16 3V7"/><circle cx="12" cy="15" r="1.5" fill="var(--fw-gold)"/></>:<><path d="M4 11H20V21H4ZM3 7H21V11H3ZM12 7V21"/><path d="M12 7C3 7 5 0 9 3ZM12 7C21 7 19 0 15 3Z"/></>}</svg>;
 }
 function BotanicalCorner({corner}){return <svg className={'botanical '+corner} viewBox="0 0 150 260" fill="none"><path d="M70 250Q110 125 55 10" stroke="currentColor" strokeWidth="2"/>{[0,1,2,3,4].map(n=><g key={n} transform={'translate(0 '+n*43+')'}><path d="M77 48Q12 35 34 3Q75 14 77 48ZM80 58Q135 40 121 13Q87 23 80 58Z" fill="currentColor"/></g>)}</svg>;}
-function ScentIcon({honey}){return <svg viewBox="0 0 100 100" fill="none" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{honey?<>
-  <path d="M22 47H59L64 80Q41 89 18 80ZM24 41H57V47H24Z" fill="rgba(201,162,74,.4)"/><path d="M28 57Q41 52 54 57M28 72Q41 77 54 72M70 84L82 20"/>{[30,42,54,66].map(y=><path key={y} d={'M'+(82-(y-20)/6)+' '+y+'q-18 -15 -14 -20q17 2 14 20q18 -8 16 -17q-16 -2 -16 17'} fill="var(--fw-cream)"/>)}
-</>:<><path d="M22 86Q37 61 65 28M31 87Q47 58 69 34" stroke="var(--fw-burgundy)" strokeWidth="4"/>{[0,72,144,216,288].map(a=><ellipse key={a} cx="50" cy="30" rx="11" ry="22" transform={'rotate('+a+' 50 49)'} fill="var(--fw-cream)"/>)}<circle cx="50" cy="49" r="9" fill="var(--fw-gold)"/></>}</svg>;}
-function ParaffinIcon(){return <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 23H31L28 31H8Z" fill="rgba(201,162,74,.2)"/><path d="M12 23L11 15Q11 12 13 13L16 17V7Q18 4 19 7V14L21 8Q23 7 23 10L22 17L25 13Q28 12 27 15L24 23" fill="var(--fw-cream-deep)"/><path d="M9 27H27M7 7Q5 10 7 12M29 5Q27 8 29 10" stroke="var(--fw-gold-deep)"/></svg>;}
-function BowlSteamIcon(){
-  return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M14 8 C 14 5, 16 5, 16 8 C 16 10, 14 10, 14 12" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <path d="M19 7 C 19 4, 21 4, 21 7 C 21 9, 19 9, 19 11" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <path d="M5 16 H 31 C 30 25, 25 29, 18 29 C 11 29, 6 25, 5 16 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
-      <ellipse cx="18" cy="16" rx="13" ry="2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
-    </svg>
-  );
-}
-function ScrubIcon(){
-  return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M8 22 L 12 12 H 24 L 28 22 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
-      <line x1="8" y1="22" x2="28" y2="22" stroke="var(--fw-charcoal)" strokeWidth="1.6"/>
-      <circle cx="14" cy="17" r="1.1" fill="var(--fw-gold-deep)"/>
-      <circle cx="18" cy="15" r="1.1" fill="var(--fw-gold-deep)"/>
-      <circle cx="22" cy="18" r="1.1" fill="var(--fw-gold-deep)"/>
-      <circle cx="16" cy="20" r="0.9" fill="var(--fw-gold-deep)"/>
-      <circle cx="21" cy="20" r="0.9" fill="var(--fw-gold-deep)"/>
-      <path d="M11 26 H 25" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function JarIcon(){
-  return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <rect x="10" y="8" width="16" height="4" rx="1.2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
-      <path d="M11 12 H 25 V 27 C 25 28.5, 23.5 29, 22 29 H 14 C 12.5 29, 11 28.5, 11 27 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
-      <path d="M14 18 C 16 16, 20 16, 22 18" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M13 22 C 16 20, 20 20, 23 22" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-    </svg>
-  );
-}
-function LotionIcon(){
-  return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <path d="M15 8 H 21 V 11 H 15 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
-      <path d="M13 11 H 23 L 22 14 H 14 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.18)"/>
-      <path d="M14 14 H 22 V 28 C 22 29, 21 29.5, 20 29.5 H 16 C 15 29.5, 14 29, 14 28 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.15)"/>
-      <path d="M21 8 V 5 H 24 V 7" stroke="var(--fw-gold-deep)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <line x1="16" y1="20" x2="20" y2="20" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
-      <line x1="16" y1="23" x2="20" y2="23" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function StonesIcon(){
-  return (
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <ellipse cx="11" cy="22" rx="7" ry="3" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
-      <ellipse cx="22" cy="20" rx="8" ry="3.5" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.22)"/>
-      <ellipse cx="16" cy="16" rx="6" ry="2.5" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.16)"/>
-      <path d="M13 11 C 13 9, 15 9, 15 11" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M18 9 C 18 7, 20 7, 20 9" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-    </svg>
-  );
-}
+function IconImg({src,alt}){return <img src={'assets/icons/'+src} alt={alt} style={{objectFit:'contain',display:'block'}}/>;}
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);

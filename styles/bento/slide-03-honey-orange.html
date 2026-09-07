@@ -117,24 +117,24 @@
   .hero{ }
   .hero-img{ width:100%; height:100%; object-fit:cover; object-position:center 35%; display:block; }
   .hero-vignette{
-    position:absolute; inset:0; pointer-events:none; z-index:1;
+    position:absolute !important; inset:0; pointer-events:none; z-index:1;
     background:
       linear-gradient(90deg, rgba(43,34,26,.78) 0%, rgba(43,34,26,.30) 42%, rgba(43,34,26,0) 62%),
       linear-gradient(180deg, rgba(43,34,26,.15) 0%, rgba(43,34,26,.55) 100%);
   }
   .hero-eyebrow-pill{
-    position:absolute; z-index:1; top:28px; left:30px; padding:10px 18px;
+    position:absolute !important; z-index:1; top:28px; left:30px; padding:10px 18px;
     display:flex; align-items:center; gap:10px; border-radius:40px;
     background:rgba(247,236,216,.94); border:1px solid rgba(201,162,74,.65);
     color:var(--fw-burgundy); font-size:14px;
   }
   .hero-eyebrow-pill:before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--fw-burgundy); }
-  .hero-copy{ position:absolute; z-index:1; left:44px; right:44px; top:170px; color:var(--fw-cream); text-shadow:0 2px 14px rgba(20,14,8,.45); }
+  .hero-copy{ position:absolute !important; z-index:1; left:44px; right:44px; top:170px; color:var(--fw-cream); text-shadow:0 2px 14px rgba(20,14,8,.45); }
   .hero-copy .caps{ font-size:14px; color:#F0E0BE; margin-bottom:14px; }
   .hero-copy h1{ font-family:'Cormorant Garamond',serif; font-size:78px; line-height:.98; font-weight:500; }
   .hero-copy h1 em{ color:var(--fw-gold-hi, #E8CE94); font-style:italic; font-weight:500; }
   .hero-subtitle{ font-size:40px; font-style:italic; color:#F0E0BE; margin-top:10px; }
-  .hero-standfirst{ position:absolute; z-index:1; left:44px; right:44px; bottom:34px; font-size:24px; font-style:italic; color:var(--fw-cream); text-shadow:0 2px 14px rgba(20,14,8,.45); }
+  .hero-standfirst{ position:absolute !important; z-index:1; left:44px; right:44px; bottom:34px; font-size:24px; font-style:italic; color:var(--fw-cream); text-shadow:0 2px 14px rgba(20,14,8,.45); }
 
   .promise-panel{ padding:22px 36px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
   .promise-copy .caps{ font-size:14px; color:var(--fw-burgundy); margin-bottom:12px; }
@@ -168,7 +168,7 @@
   .step{ text-align:center; position:relative; }
   .step:not(:last-child):after{ content:'›'; position:absolute; right:-11px; top:24px; color:var(--fw-gold-deep); font-size:30px; }
   .icon-frame{ position:relative; width:68px; height:68px; border:1px solid var(--fw-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; background:rgba(247,236,216,.6); }
-  .icon-frame > svg{ width:38px; height:38px; }
+  .icon-frame > svg, .icon-frame > img{ width:38px; height:38px; }
   .step-num{ position:absolute; top:-6px; left:-4px; width:26px; height:26px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:var(--fw-burgundy); border:1px solid var(--fw-gold); color:var(--fw-cream); font:500 14px 'Jost',sans-serif; }
   .step h3{ font-size:15px; line-height:1.14; letter-spacing:.02em; }
 
@@ -213,17 +213,17 @@ function App(){
   );
 
   const benefits = [
-    { icon: <SunIcon/>,    title:'Vitamin C Glow',         body:'Brightens dull skin and reveals a fresh, radiant look.' },
-    { icon: <HoneyIcon/>,  title:'Honey Hydration',        body:'Locks in moisture for soft, smooth, healthy-looking skin.' },
-    { icon: <OrangeIcon/>, title:'Orange Revitalization',  body:'Antioxidant-rich citrus refreshes and evens skin tone.' },
+    { icon: <IconImg src="icon-glow-sparkle.png" alt="Vitamin C glow"/>,    title:'Vitamin C Glow',         body:'Brightens dull skin and reveals a fresh, radiant look.' },
+    { icon: <IconImg src="icon-honey-drip.png" alt="Honey hydration"/>,  title:'Honey Hydration',        body:'Locks in moisture for soft, smooth, healthy-looking skin.' },
+    { icon: <IconImg src="icon-citrus-fruit.png" alt="Orange revitalization"/>, title:'Orange Revitalization',  body:'Antioxidant-rich citrus refreshes and evens skin tone.' },
   ];
 
   const included = [
-    { n:1, title:'Sea Salt Soak',      icon:<SaltBowlIcon/> },
-    { n:2, title:'Honey Sugar Scrub',  icon:<ScrubJarIcon/> },
-    { n:3, title:'Mud Masque',         icon:<MudJarIcon/> },
-    { n:4, title:'Massage Lotion',     icon:<LotionIcon/> },
-    { n:5, title:'Real Orange Slices', icon:<OrangeSliceIcon/> },
+    { n:1, title:'Sea Salt Soak',      icon:<IconImg src="icon-warm-soak.png" alt="Sea salt soak"/> },
+    { n:2, title:'Honey Sugar Scrub',  icon:<IconImg src="icon-sugar-scrub.png" alt="Honey sugar scrub"/> },
+    { n:3, title:'Mud Masque',         icon:<IconImg src="icon-cream-mask.png" alt="Mud masque"/> },
+    { n:4, title:'Massage Lotion',     icon:<IconImg src="icon-lotion-massage.png" alt="Massage lotion"/> },
+    { n:5, title:'Real Orange Slices', icon:<IconImg src="icon-citrus-fruit.png" alt="Real orange slices"/> },
   ];
 
   return (
@@ -357,123 +357,7 @@ function DividerRule({children}){return <div className="divider-rule"><LeafIcon/
 function LeafIcon(){return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20Q2 3 21 3Q21 21 4 20ZM4 20L16 8" stroke="currentColor" strokeWidth="1.4" fill="rgba(201,162,74,.12)"/></svg>;}
 function BotanicalCorner({corner}){return <svg className={'botanical '+corner} viewBox="0 0 150 260" fill="none"><path d="M70 250Q110 125 55 10" stroke="currentColor" strokeWidth="2"/>{[0,1,2,3,4].map(n=><g key={n} transform={'translate(0 '+n*43+')'}><path d="M77 48Q12 35 34 3Q75 14 77 48ZM80 58Q135 40 121 13Q87 23 80 58Z" fill="currentColor"/></g>)}</svg>;}
 
-/* ── benefit icons ─────────────────────────────────────────── */
-function SunIcon(){
-  return (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
-      <circle cx="16" cy="16" r="6" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
-      <g stroke="var(--fw-gold-deep)" strokeWidth="1.8" strokeLinecap="round">
-        <line x1="16" y1="3" x2="16" y2="7"/>
-        <line x1="16" y1="25" x2="16" y2="29"/>
-        <line x1="3" y1="16" x2="7" y2="16"/>
-        <line x1="25" y1="16" x2="29" y2="16"/>
-        <line x1="6.5" y1="6.5" x2="9.5" y2="9.5"/>
-        <line x1="22.5" y1="22.5" x2="25.5" y2="25.5"/>
-        <line x1="6.5" y1="25.5" x2="9.5" y2="22.5"/>
-        <line x1="22.5" y1="9.5" x2="25.5" y2="6.5"/>
-      </g>
-      <path d="M13 15 a3 3 0 0 0 3 3" stroke="var(--fw-burgundy)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-    </svg>
-  );
-}
-function HoneyIcon(){
-  return (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
-      <path d="M16 5 L23 9 V17 L16 21 L9 17 V9 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.30)"/>
-      <path d="M16 9 L19.5 11 V15 L16 17 L12.5 15 V11 Z" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinejoin="round" fill="rgba(201,162,74,0.45)"/>
-      <path d="M16 22 V28" stroke="var(--fw-gold-deep)" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M14 26 C 15 27, 17 27, 18 26" stroke="var(--fw-burgundy)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-    </svg>
-  );
-}
-function OrangeIcon(){
-  return (
-    <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
-      <circle cx="16" cy="17" r="10" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(122,33,48,0.18)"/>
-      <g stroke="var(--fw-gold-deep)" strokeWidth="1.1" fill="none">
-        <line x1="16" y1="7" x2="16" y2="27"/>
-        <line x1="6" y1="17" x2="26" y2="17"/>
-        <line x1="9" y1="10" x2="23" y2="24"/>
-        <line x1="23" y1="10" x2="9" y2="24"/>
-      </g>
-      <path d="M14 6 C 16 3, 19 4, 19 7 C 17.5 7.5, 15 7.5, 14 6 Z" stroke="var(--fw-charcoal)" strokeWidth="1.3" strokeLinejoin="round" fill="rgba(124,156,90,0.55)"/>
-    </svg>
-  );
-}
-
-/* ── included-ritual icons ─────────────────────────────────────────── */
-function SaltBowlIcon(){
-  return (
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-      <path d="M15 5 C 15 3, 17 3, 17 5 C 17 7, 15 7, 15 9" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M20 4 C 20 2, 22 2, 22 4 C 22 6, 20 6, 20 8" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M6 18 H 32 C 31 27, 26 31, 19 31 C 12 31, 7 27, 6 18 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.22)"/>
-      <ellipse cx="19" cy="18" rx="13" ry="2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.32)"/>
-      <circle cx="14" cy="17" r="0.8" fill="var(--fw-cream)"/>
-      <circle cx="20" cy="17" r="0.8" fill="var(--fw-cream)"/>
-      <circle cx="24" cy="17.5" r="0.7" fill="var(--fw-cream)"/>
-    </svg>
-  );
-}
-function ScrubJarIcon(){
-  return (
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-      <rect x="11" y="9" width="16" height="4" rx="1.2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.40)"/>
-      <path d="M12 13 H 26 V 28 C 26 29.5, 24.5 30, 23 30 H 15 C 13.5 30, 12 29.5, 12 28 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.22)"/>
-      <circle cx="15" cy="18" r="0.9" fill="var(--fw-gold-deep)"/>
-      <circle cx="19" cy="19.5" r="1" fill="var(--fw-burgundy)"/>
-      <circle cx="22.5" cy="17.5" r="0.9" fill="var(--fw-gold-deep)"/>
-      <circle cx="16.5" cy="22" r="0.9" fill="var(--fw-burgundy)"/>
-      <circle cx="20" cy="24" r="1" fill="var(--fw-gold-deep)"/>
-      <circle cx="23" cy="22.5" r="0.8" fill="var(--fw-burgundy)"/>
-      <path d="M14 27 H 24" stroke="var(--fw-gold-deep)" strokeWidth="1.3" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function MudJarIcon(){
-  return (
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-      <rect x="11" y="9" width="16" height="4" rx="1.2" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(122,33,48,0.30)"/>
-      <path d="M12 13 H 26 V 28 C 26 29.5, 24.5 30, 23 30 H 15 C 13.5 30, 12 29.5, 12 28 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(122,33,48,0.16)"/>
-      <path d="M14 19 C 17 17, 21 18, 24 19" stroke="var(--fw-burgundy)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <path d="M14 23 C 17 21, 21 22, 24 23" stroke="var(--fw-burgundy)" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-      <circle cx="17" cy="26" r="0.8" fill="var(--fw-burgundy)"/>
-      <circle cx="21" cy="26" r="0.8" fill="var(--fw-burgundy)"/>
-    </svg>
-  );
-}
-function LotionIcon(){
-  return (
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-      <path d="M16 9 H 22 V 12 H 16 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" fill="rgba(201,162,74,0.30)"/>
-      <path d="M14 12 H 24 L 23 15 H 15 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.20)"/>
-      <path d="M15 15 H 23 V 29 C 23 30, 22 30.5, 21 30.5 H 17 C 16 30.5, 15 30, 15 29 Z"
-        stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(201,162,74,0.16)"/>
-      <path d="M22 9 V 6 H 25 V 8" stroke="var(--fw-burgundy)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      <line x1="17" y1="21" x2="21" y2="21" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
-      <line x1="17" y1="24" x2="21" y2="24" stroke="var(--fw-gold-deep)" strokeWidth="1.4" strokeLinecap="round"/>
-    </svg>
-  );
-}
-function OrangeSliceIcon(){
-  return (
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-      <path d="M5 22 A 14 14 0 0 1 33 22 Z" stroke="var(--fw-charcoal)" strokeWidth="1.6" strokeLinejoin="round" fill="rgba(122,33,48,0.22)"/>
-      <path d="M5 22 H 33" stroke="var(--fw-charcoal)" strokeWidth="1.6"/>
-      <g stroke="var(--fw-gold-deep)" strokeWidth="1.2" fill="none">
-        <line x1="19" y1="22" x2="19" y2="9"/>
-        <line x1="19" y1="22" x2="11" y2="13"/>
-        <line x1="19" y1="22" x2="27" y2="13"/>
-        <line x1="19" y1="22" x2="8" y2="19"/>
-        <line x1="19" y1="22" x2="30" y2="19"/>
-      </g>
-      <path d="M17 7 C 19 4, 22 5, 22 8 C 20.5 8.5, 18 8.5, 17 7 Z" stroke="var(--fw-charcoal)" strokeWidth="1.2" strokeLinejoin="round" fill="rgba(124,156,90,0.55)"/>
-    </svg>
-  );
-}
+function IconImg({src,alt}){return <img src={'assets/icons/'+src} alt={alt} style={{objectFit:'contain',display:'block'}}/>;}
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
